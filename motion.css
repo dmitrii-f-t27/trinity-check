@@ -1,0 +1,224 @@
+/* Trinity Check motion layer.
+   Curves and durations follow Emil Kowalski's animation standards and Apple's
+   fluid-interface rules: transform/opacity/clip-path only, ease-out for
+   entrances, ease-in-out for on-screen movement, nothing over 300ms in the
+   working UI, longer beats only for the explanatory scan stage. */
+:root{
+ --ease-out:cubic-bezier(.23,1,.32,1);
+ --ease-in-out:cubic-bezier(.77,0,.175,1);
+ --ease-drawer:cubic-bezier(.32,.72,0,1);
+ --stage-bg:#0d1d19;--stage-line:#25403a;--stage-ink:#e9f2ef;--stage-muted:#93aba4;
+ --stage-accept:#5fd4a8;--stage-refuse:#ff8f7f;--stage-scan:#b9f5dc;
+}
+
+/* Cross-document page transitions: the header stays put, the page body
+   cross-fades with a short rise. Browsers without support navigate normally. */
+@view-transition{navigation:auto}
+header{view-transition-name:site-header}
+::view-transition-old(root){animation:vt-out 160ms var(--ease-out) both}
+::view-transition-new(root){animation:vt-in 260ms var(--ease-out) both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0;transform:translateY(6px)}}
+
+/* Translucent header material: content scrolls underneath it. */
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(18px) saturate(180%);backdrop-filter:blur(18px) saturate(180%);border-bottom-color:transparent;box-shadow:0 1px 0 rgba(32,43,50,0);transition:box-shadow 200ms ease,border-color 200ms ease}
+html[data-scrolled] header{box-shadow:0 1px 0 rgba(32,43,50,.08),0 8px 24px -16px rgba(32,43,50,.35)}
+.brand-mark{transition:transform 300ms var(--ease-out)}
+@media(hover:hover) and (pointer:fine){.brand:hover .brand-mark{transform:rotate(-8deg) scale(1.06)}}
+
+/* Press feedback on every pressable element: instant, on pointer-down. */
+button,.primary-link{transition:transform 160ms var(--ease-out),background-color 150ms ease,color 150ms ease,border-color 150ms ease}
+button:active:not(:disabled),.primary-link:active{transform:scale(.97)}
+.primary-link{display:inline-flex;align-items:center;gap:10px}
+.primary-link::after{content:"→";transition:transform 200ms var(--ease-out)}
+@media(hover:hover) and (pointer:fine){.primary-link:hover::after{transform:translateX(4px)}}
+
+/* First paint: headline revealed through its own line box, copy follows. */
+.intro h1,.audit-intro h1,.commerce>h1{animation:line-reveal 640ms var(--ease-out) both}
+.intro .lede,.audit-intro h2{animation:rise 520ms var(--ease-out) 90ms both}
+.intro .intro-context,.audit-intro>p,.audit-intro .cta-row{animation:rise 520ms var(--ease-out) 160ms both}
+@keyframes line-reveal{from{clip-path:inset(0 0 100% 0);transform:translateY(.35em)}to{clip-path:inset(0 0 -10% 0);transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}}
+
+/* Workspace: the checker and the live scan stage side by side. */
+.workspace.has-stage{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,1fr);gap:20px;align-items:stretch}
+.workspace.has-stage .checker{animation:rise 520ms var(--ease-out) 200ms both}
+.workspace.has-stage #check-form{grid-template-columns:1fr}
+.workspace.has-stage .actions{padding-top:0}
+
+/* Mode switch: one indicator that slides between tabs instead of two
+   box-shadows swapping. */
+.mode-switch{position:relative}
+.mode-switch.has-indicator button[aria-pressed=true]{box-shadow:none}
+.mode-indicator{position:absolute;left:0;bottom:-1px;height:2px;width:1px;background:var(--accent);transform-origin:0 0;transition:transform 250ms var(--ease-in-out);pointer-events:none}
+.mode-switch button{transition:color 150ms ease,transform 160ms var(--ease-out)}
+
+/* Scan stage ---------------------------------------------------------------- */
+.scan-stage{position:relative;overflow:hidden;background:var(--stage-bg);color:var(--stage-ink);border-radius:12px;padding:22px 22px 18px;display:flex;flex-direction:column;gap:14px;min-width:0;isolation:isolate;animation:rise 560ms var(--ease-out) 280ms both;box-shadow:0 24px 48px -28px rgba(13,29,25,.55)}
+.scan-stage::before{content:"";position:absolute;inset:-40% -20% auto auto;width:70%;aspect-ratio:1;background:radial-gradient(closest-side,rgba(95,212,168,.18),transparent);z-index:-1;pointer-events:none}
+.stage-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.stage-kicker{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--stage-muted);font-weight:600}
+.stage-badge{font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--stage-ink);white-space:nowrap;transition:background-color 200ms ease,color 200ms ease}
+.scan-stage[data-mode=live] .stage-badge{background:rgba(95,212,168,.18);color:var(--stage-accept)}
+.scan-stage[data-mode=error] .stage-badge{background:rgba(255,143,127,.16);color:var(--stage-refuse)}
+.stage-file{margin:0;font:600 14px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere;color:#fff}
+.stage-label{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--stage-muted);margin:0 0 6px;font-variant-numeric:tabular-nums}
+
+/* Whole file, drawn to scale: the header is a sliver at its start. */
+.file-bar{position:relative;height:10px;border-radius:5px;background:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 6px,rgba(255,255,255,.03) 6px 12px);clip-path:inset(0 100% 0 0 round 5px);transition:clip-path 520ms var(--ease-in-out)}
+.file-bar-read{position:absolute;left:0;top:-3px;bottom:-3px;width:max(4px,var(--read,0.3%));border-radius:3px;background:var(--stage-scan);box-shadow:0 0 12px rgba(185,245,220,.75);opacity:0;transition:opacity 200ms ease}
+.s1 .file-bar{clip-path:inset(0 0 0 0 round 5px)}
+.s2 .file-bar-read{opacity:1}
+
+/* Zoom wedge: the sliver opens into the header strip. */
+.zoom{height:26px;margin:-6px 0 -8px;transform-origin:0 0;transform:scaleY(0);opacity:0;transition:transform 380ms var(--ease-out),opacity 200ms ease}
+.zoom svg{display:block;width:100%;height:100%}
+.zoom path{fill:rgba(185,245,220,.10);stroke:rgba(185,245,220,.35);stroke-width:1;vector-effect:non-scaling-stroke}
+.s3 .zoom{transform:none;opacity:1}
+
+.header-strip{position:relative;display:flex;height:40px;border-radius:7px;overflow:hidden;background:rgba(255,255,255,.04);outline:1px solid var(--stage-line)}
+.seg{position:relative;display:block;text-align:center;line-height:40px;text-overflow:ellipsis;padding:0 6px;font:600 11px/40px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--stage-muted);border-right:1px solid var(--stage-line);white-space:nowrap;overflow:hidden;opacity:0;transform:translateY(6px);transition:opacity 260ms var(--ease-out),transform 260ms var(--ease-out),color 200ms ease}
+.seg:last-of-type{border-right:0}
+.seg-magic{flex:0 0 52px}.seg-ver{flex:0 0 34px}.seg-meta{flex:1 1 34%}.seg-tensors{flex:1 1 46%}.seg-pad{flex:0 0 14%}
+.seg-pad{background:repeating-linear-gradient(135deg,transparent 0 5px,rgba(255,255,255,.05) 5px 10px)}
+.s4 .seg{opacity:1;transform:none}
+.seg:nth-of-type(2){transition-delay:50ms}.seg:nth-of-type(3){transition-delay:100ms}.seg:nth-of-type(4){transition-delay:150ms}.seg:nth-of-type(5){transition-delay:200ms}
+.scan-fill{position:absolute;inset:0;background:linear-gradient(90deg,rgba(95,212,168,.20),rgba(95,212,168,.34));transform-origin:0 50%;transform:scaleX(var(--scan,0));pointer-events:none}
+.scan-head{position:absolute;top:-2px;bottom:-2px;left:0;width:2px;background:var(--stage-scan);box-shadow:0 0 14px 2px rgba(185,245,220,.7);transform:translateX(calc(var(--scan,0) * var(--strip-w,300px)));opacity:0;pointer-events:none}
+.scan-stage[data-scanning] .scan-head{opacity:1}
+.scan-stage[data-scanning] .seg{color:var(--stage-ink)}
+.stage-bytes{margin:0;font-size:12px;color:var(--stage-muted);font-variant-numeric:tabular-nums;min-height:1.4em}
+.stage-bytes b{color:var(--stage-ink);font-weight:600}
+
+/* Runtime lanes: a trace runs to each verdict. */
+.lanes{list-style:none;margin:2px 0 0;padding:0;display:grid;gap:8px}
+.lane{display:grid;grid-template-columns:92px minmax(16px,1fr) auto;align-items:center;gap:10px;font-size:13px;min-height:30px}
+.lane b{font:600 12px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--stage-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lane-line{height:1px;background:linear-gradient(90deg,var(--stage-line),rgba(185,245,220,.55));transform-origin:0 50%;transform:scaleX(0);transition:transform 300ms var(--ease-out)}
+.lane .verdict{opacity:0;transform:scale(.95);transition:opacity 200ms var(--ease-out),transform 200ms var(--ease-out);background:rgba(255,255,255,.08);color:var(--stage-ink);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.lane .verdict.accept{background:rgba(95,212,168,.16);color:var(--stage-accept)}
+.lane .verdict.refuse{background:rgba(255,143,127,.14);color:var(--stage-refuse)}
+.lane[data-on] .lane-line{transform:none}
+.lane[data-on] .verdict{opacity:1;transform:none;transition-delay:180ms}
+.lane[data-on]:nth-child(2) .lane-line{transition-delay:90ms}.lane[data-on]:nth-child(2) .verdict{transition-delay:270ms}
+.lane[data-on]:nth-child(3) .lane-line{transition-delay:180ms}.lane[data-on]:nth-child(3) .verdict{transition-delay:360ms}
+.lane[data-on]:nth-child(4) .lane-line{transition-delay:270ms}.lane[data-on]:nth-child(4) .verdict{transition-delay:450ms}
+.stage-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;border-top:1px solid var(--stage-line);font-size:12px;color:var(--stage-muted)}
+.stage-foot p{margin:0}
+.stage-replay{background:transparent;border:1px solid var(--stage-line);color:var(--stage-ink);min-height:34px;padding:5px 12px;font-size:12px;border-radius:999px;display:inline-flex;gap:6px;align-items:center}
+.stage-replay:hover{background:rgba(255,255,255,.06)}
+.stage-replay svg{width:12px;height:12px;transition:transform 300ms var(--ease-out)}
+@media(hover:hover) and (pointer:fine){.stage-replay:hover svg{transform:rotate(-120deg)}}
+
+/* Results: rows and batch cards enter with a short stagger. */
+.results:not([hidden]){animation:rise 300ms var(--ease-out) both}
+.result-table tbody tr{animation:rise 300ms var(--ease-out) both}
+.result-table tbody tr:nth-child(2){animation-delay:50ms}.result-table tbody tr:nth-child(3){animation-delay:100ms}.result-table tbody tr:nth-child(4){animation-delay:150ms}
+.result-table .verdict{animation:chip 220ms var(--ease-out) 160ms both}
+@keyframes chip{from{opacity:0;transform:scale(.95)}}
+#batch-progress{transition:none}
+.batch-item .verdict{animation:chip 200ms var(--ease-out) both}
+.status-line p{transition:color 200ms ease}
+.status-line.busy p::before{content:"";display:inline-block;width:8px;height:8px;margin-right:8px;border-radius:50%;background:currentColor;vertical-align:1px;animation:pulse 900ms ease-in-out infinite alternate}
+@keyframes pulse{from{opacity:.25;transform:scale(.8)}}
+.saved-note:not([hidden]){animation:rise 260ms var(--ease-out) both}
+
+/* Read budget: 256 MiB against a whole model, to scale. */
+.budget{display:grid;gap:8px;margin-top:4px}
+.budget-bar{position:relative;height:8px;border-radius:4px;background:var(--soft);outline:1px solid var(--border);overflow:hidden}
+.budget-bar span{position:absolute;inset:0;background:var(--accent);transform-origin:0 50%;transform:scaleX(0);transition:transform 900ms var(--ease-in-out)}
+.budget[data-visible] .budget-bar span{transform:scaleX(var(--share,.04))}
+.budget-legend{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.privacy{align-items:start}
+.privacy-number{font-size:28px;font-weight:650;letter-spacing:-.02em;line-height:1}
+.privacy-number small{font-size:14px;letter-spacing:0}
+.privacy-body{display:grid;gap:12px;max-width:110ch}
+
+/* Scroll reveals: marketing sections only, fired once. Content is visible
+   without JavaScript; the hidden state only applies once motion.mjs runs. */
+.js-reveal [data-reveal]{opacity:0;transform:translateY(14px);transition:opacity 520ms var(--ease-out),transform 620ms var(--ease-out)}
+.js-reveal [data-reveal][data-visible]{opacity:1;transform:none}
+.js-reveal [data-reveal-group]>*{opacity:0;transform:translateY(10px);transition:opacity 420ms var(--ease-out),transform 520ms var(--ease-out)}
+.js-reveal [data-reveal-group][data-visible]>*{opacity:1;transform:none}
+[data-reveal-group][data-visible]>:nth-child(2){transition-delay:60ms}
+[data-reveal-group][data-visible]>:nth-child(3){transition-delay:120ms}
+[data-reveal-group][data-visible]>:nth-child(4){transition-delay:180ms}
+[data-reveal-group][data-visible]>:nth-child(5){transition-delay:240ms}
+.use-cases dl>div{position:relative;border-top:1px solid transparent}
+.use-cases dt{display:flex;gap:12px;align-items:baseline}
+.use-cases dt::before{content:attr(data-n);font:600 12px/1 ui-monospace,monospace;color:var(--accent);min-width:2ch}
+.scope[open] ul{animation:rise 260ms var(--ease-out) both}
+.scope summary{transition:color 150ms ease}
+
+/* Audit page: the process as a timeline that draws as it scrolls in. */
+.audit-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:36px;align-items:center}
+.audit-hero .scan-stage{animation-delay:220ms}
+.audit-section ol.deliverables{counter-reset:d;list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.deliverables li{counter-increment:d;padding:18px!important;border:1px solid var(--border);border-radius:10px;background:#fff;transition:transform 200ms var(--ease-out),box-shadow 200ms var(--ease-out)}
+.deliverables li::before{content:"0" counter(d);display:block;font:600 12px/1 ui-monospace,monospace;color:var(--accent);margin-bottom:10px}
+@media(hover:hover) and (pointer:fine){.deliverables li:hover{transform:translateY(-3px);box-shadow:0 14px 28px -20px rgba(19,102,83,.55)}}
+.audit-section .timeline{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
+.timeline::before{content:"";position:absolute;left:6px;right:6px;top:6px;height:2px;background:var(--accent);transform-origin:0 50%;transform:scaleX(0);transition:transform 1100ms var(--ease-in-out)}
+.timeline::after{content:"";position:absolute;left:6px;right:6px;top:6px;height:2px;background:var(--border);z-index:-1}
+.audit-section .timeline li{position:relative;padding:26px 0 0;font-size:15px;max-width:none!important}
+.timeline li::before{content:"";position:absolute;top:0;left:0;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--border);transition:border-color 200ms ease,background-color 200ms ease,transform 300ms var(--ease-out);transform:scale(.9)}
+.timeline li b{display:block;font:600 12px/1 ui-monospace,monospace;color:var(--muted);margin-bottom:8px}
+.timeline[data-visible]::before{transform:scaleX(1)}
+.timeline[data-visible] li::before{border-color:var(--accent);background:var(--accent);transform:none}
+.timeline[data-visible] li:nth-child(2)::before{transition-delay:280ms}.timeline[data-visible] li:nth-child(3)::before{transition-delay:560ms}.timeline[data-visible] li:nth-child(4)::before{transition-delay:840ms}
+
+/* Sample page: evidence values count in. */
+.evidence-list dd,.evidence-list dt{transition:opacity 400ms var(--ease-out),transform 500ms var(--ease-out)}
+
+@media(max-width:980px){
+ .workspace.has-stage{grid-template-columns:1fr}
+ .audit-hero{grid-template-columns:1fr;gap:24px}
+}
+@media(max-width:850px){
+ .audit-section ol.deliverables{grid-template-columns:1fr}
+ .audit-section .timeline{grid-template-columns:1fr 1fr;row-gap:22px}
+ .timeline::before,.timeline::after{display:none}
+}
+@media(max-width:600px){
+ header{position:static}
+ .scan-stage{padding:18px 16px 14px;border-radius:10px}
+ .lane{grid-template-columns:80px minmax(10px,1fr) auto}
+ .audit-section .timeline{grid-template-columns:1fr}
+ .privacy-number{font-size:24px}
+}
+
+/* Reduced motion: no travel, no sweeps. Keep short opacity changes that aid
+   comprehension; the scan stage renders its final state. */
+@media(prefers-reduced-motion:reduce){
+ @view-transition{navigation:none}
+ *,*::before,*::after{animation-duration:1ms!important;animation-delay:0ms!important;animation-iteration-count:1!important}
+ .file-bar,.zoom,.seg,.lane-line,.lane .verdict,.budget-bar span,.timeline::before,.timeline li::before,.js-reveal [data-reveal],.js-reveal [data-reveal-group]>*{transition:opacity 200ms ease!important;transition-delay:0ms!important}
+ .js-reveal [data-reveal],.js-reveal [data-reveal-group]>*{transform:none!important}
+ button:active:not(:disabled),.primary-link:active{transform:none}
+ .mode-indicator{transition:none}
+}
+@media(prefers-reduced-transparency:reduce){header{background:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}}
+
+.commerce .audience{max-width:none}
+@media(max-width:600px){.seg{padding:0 3px;font-size:10px;line-height:40px}.seg-magic{flex-basis:40px}.seg-ver{flex-basis:26px}}
+
+/* Conversion surfaces: order prompt under a finished check, pilot offer, thanks. */
+.audit-cta{display:flex;gap:16px 28px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:20px;padding:20px 22px;border-radius:12px;background:var(--stage-bg);color:var(--stage-ink);animation:rise 360ms var(--ease-out) 250ms both}
+.audit-cta>div{min-width:0;max-width:72ch}
+.audit-cta p{margin:0;color:var(--stage-muted);font-size:14px}
+.audit-cta .audit-cta-title{color:#fff;font-size:17px;font-weight:650;margin-bottom:4px}
+.audit-cta .primary-link{background:var(--stage-accept);color:#06261c}
+.audit-cta .primary-link:hover{background:#7fe0bb}
+.offer{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(240px,1fr);gap:20px 32px;margin:8px 0 28px;padding:24px;border:1px solid var(--border);border-radius:12px;background:#fff;box-shadow:0 18px 40px -30px rgba(19,102,83,.6)}
+.offer-kicker{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:650;color:var(--accent)}
+.offer-price{margin:6px 0 0;font-size:32px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.offer ul{margin:14px 0 0;padding-left:20px;display:grid;gap:6px}
+.offer-action{display:grid;gap:10px;align-content:start}
+.offer-action .primary-link{justify-content:center}
+.offer-action .help{margin:0}
+.thanks{text-align:left;max-width:680px;padding-top:56px}
+.thanks-mark svg{width:56px;height:56px;fill:none;stroke:var(--accent);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.thanks-mark circle{stroke-dasharray:139;stroke-dashoffset:139;animation:draw 700ms var(--ease-out) 100ms forwards}
+.thanks-mark path{stroke-dasharray:32;stroke-dashoffset:32;animation:draw 360ms var(--ease-out) 650ms forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media(max-width:700px){.offer{grid-template-columns:1fr;padding:18px}.audit-cta{padding:18px}}

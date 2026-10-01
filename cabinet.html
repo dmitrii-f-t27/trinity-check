@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Кабинет — Trinity Check</title>
+<meta name="description" content="История проверок заголовков GGUF, сохранённая в этом браузере.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23136653'/%3E%3Cpath d='M7 9h18v5h-6v12h-6V14H7z' fill='%23ffffff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css?v=20260930-design">
+<link rel="stylesheet" href="batch.css?v=20260930-design">
+<link rel="stylesheet" href="cabinet.css?v=20260930-design">
+<link rel="stylesheet" href="commerce.css?v=20260930-audit"><link rel="stylesheet" href="motion.css?v=20261001-motion"></head>
+<body>
+<header><a class="brand" href="./" aria-label="Trinity Check, главная"><span class="brand-mark">T</span> TRINITY <span class="brand-divider">/</span> <span class="brand-product">CHECK</span></a><nav class="site-nav" aria-label="Разделы"><a href="./">Проверка</a><a href="cabinet.html" aria-current="page">Кабинет</a><a href="audit.html">Model Release Audit</a><a class="feedback-link" href="contact.html?type=feedback" data-copy="feedback">Feedback</a></nav></header>
+<main>
+<section class="intro"><h1>История проверок</h1><p class="lede">Сохранённые проверки в этом браузере. Откройте отчёт или повторите проверку.</p></section>
+<section class="stats" aria-label="Сводка по истории">
+<div class="stat"><span class="stat-value" id="stat-runs">—</span><span class="stat-label">Запусков</span></div>
+<div class="stat"><span class="stat-value" id="stat-files">—</span><span class="stat-label">Файлов проверено</span></div>
+<div class="stat"><span class="stat-value" id="stat-errors">—</span><span class="stat-label">Ссылок с ошибкой</span></div>
+<div class="stat"><span class="stat-value" id="stat-month">—</span><span class="stat-label">Файлов за этот месяц</span></div>
+</section>
+<section class="panel history" aria-labelledby="history-title">
+<div class="history-toolbar"><h2 id="history-title">Сохранённые отчёты</h2><div class="history-actions"><button id="export" class="secondary" type="button" disabled>Скачать историю</button><button id="import" class="secondary" type="button" disabled>Загрузить JSON</button><button id="clear" class="secondary danger" type="button" disabled>Очистить</button></div></div>
+<input id="import-file" type="file" accept="application/json,.json" hidden>
+<div class="history-search"><label for="search">Поиск по имени файла или ссылке</label><input id="search" type="search" autocomplete="off" spellcheck="false" placeholder="Например, Bonsai или PQ2_0" disabled></div>
+<div class="status-line" id="status-line"><p id="state" role="status" aria-live="polite">Загружаем историю…</p></div>
+<div id="empty" class="empty" hidden><p><b>Пока нет сохранённых проверок.</b> Проверьте модель — отчёт появится здесь автоматически. Можно также загрузить ранее скачанный JSON-отчёт.</p><a class="button-link" href="./">Проверить модель</a></div>
+<div id="runs" class="run-list"></div>
+<button id="more" class="secondary more" type="button" hidden>Показать ещё</button>
+</section>
+<section class="privacy"><span class="privacy-number">0 <small>серверов</small></span><p><b>История хранится только в этом браузере на этом устройстве.</b> Отчёты никуда не отправляются. Очистка данных сайта удаляет историю; некоторые браузеры, например Safari, удаляют данные сайта, который долго не открывали. Чтобы не потерять отчёты, скачивайте историю в JSON.</p></section>
+</main>
+<footer><span>Trinity Check </span><nav aria-label="Источники"><a href="https://dmitrii-f-t27.github.io/trinity-memory/check.html" target="_blank" rel="noopener">Исходный проверяющий инструмент</a><a href="provenance.txt">Версия ядра</a><a href="LICENSE">Apache 2.0</a></nav></footer>
+<script type="module" src="cabinet.mjs"></script>
+<script type="module" src="commerce.mjs?v=20260930-audit1"></script><script type="module" src="motion.mjs?v=20261001-motion"></script></body></html>

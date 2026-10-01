@@ -1,0 +1,107 @@
+{
+  "bytes": 16777216,
+  "checked_at": "2026-09-30T17:27:47.725Z",
+  "complete": true,
+  "fileSize": "5946648928",
+  "needed": "0",
+  "parser_sha256": "2a3d397991ab3fd6aa29ea2b9ad153ece90aa6fe6acf4410392fb90d6ecf1452",
+  "revision": "b072e1d3b35a0a630cece372c2127528e0994386",
+  "rows": [
+    {
+      "id": 1,
+      "model": {
+        "expected": "0",
+        "found": "0",
+        "part": "0",
+        "record": "0",
+        "result": 1,
+        "status": -80,
+        "verdict": 1
+      },
+      "name": "llama.cpp",
+      "walk": {
+        "alignment": "32",
+        "data_start": "11120992",
+        "expected": "0",
+        "found": "0",
+        "keys": "49",
+        "misfit_other": "0",
+        "misfit_ternary": "0",
+        "needed": "11120992",
+        "read": "851",
+        "reader": -80,
+        "record": "0",
+        "status": -80,
+        "tensors": "851",
+        "ternary": "0",
+        "ternary_ok": "0",
+        "version": "3"
+      }
+    },
+    {
+      "id": 2,
+      "model": {
+        "expected": "0",
+        "found": "0",
+        "part": "0",
+        "record": "18446744073709551615",
+        "result": 0,
+        "status": 0,
+        "verdict": 0
+      },
+      "name": "PrismML",
+      "walk": {
+        "alignment": "32",
+        "data_start": "11120992",
+        "expected": "0",
+        "found": "0",
+        "keys": "49",
+        "misfit_other": "0",
+        "misfit_ternary": "0",
+        "needed": "11120992",
+        "read": "851",
+        "reader": 0,
+        "record": "18446744073709551615",
+        "status": 0,
+        "tensors": "851",
+        "ternary": "402",
+        "ternary_ok": "402",
+        "version": "3"
+      }
+    },
+    {
+      "id": 3,
+      "model": {
+        "expected": "0",
+        "found": "0",
+        "part": "0",
+        "record": "0",
+        "result": 1,
+        "status": -80,
+        "verdict": 1
+      },
+      "name": "bitnet.cpp",
+      "walk": {
+        "alignment": "32",
+        "data_start": "11120992",
+        "expected": "0",
+        "found": "0",
+        "keys": "49",
+        "misfit_other": "0",
+        "misfit_ternary": "0",
+        "needed": "11120992",
+        "read": "851",
+        "reader": -80,
+        "record": "0",
+        "status": -80,
+        "tensors": "851",
+        "ternary": "0",
+        "ternary_ok": "0",
+        "version": "3"
+      }
+    }
+  ],
+  "scope": "GGUF header and metadata only; not a guarantee of successful inference",
+  "split": false,
+  "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf/resolve/b072e1d3b35a0a630cece372c2127528e0994386/Ternary-Bonsai-2-27B-PTQ1_0.gguf"
+}

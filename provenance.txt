@@ -1,0 +1,19 @@
+Trinity Check UI - 2026-09-28
+
+Upstream browser checker:
+https://dmitrii-f-t27.github.io/trinity-memory/check.html
+Source repository:
+https://github.com/dmitrii-f-t27/trinity-memory
+
+The following parser assets were retrieved unchanged from that deployed checker
+on 2026-09-28: formats.wasm, wasm-live.mjs, header-fetch.mjs, check-worker.mjs.
+Parser SHA-256:
+2a3d397991ab3fd6aa29ea2b9ad153ece90aa6fe6acf4410392fb90d6ecf1452
+
+Runtime revisions are compiled into that parser. This UI does not claim to test
+the latest or every revision of llama.cpp, PrismML, or bitnet.cpp.
+The source commit of the deployed binary has not been independently established.
+
+Scope: bounded GGUF header/metadata inspection; no weight evaluation, quality,
+speed, or inference-success guarantee. One split part is not a complete model.
+The original Apache 2.0 license is included in LICENSE.
