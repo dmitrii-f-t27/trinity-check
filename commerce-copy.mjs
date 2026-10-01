@@ -248,12 +248,12 @@ export const copy = {
     "ja": "結論：公開前にランタイム対応の表現を限定する。"
   },
   "conclusionText": {
-    "en": "The checker accepts PrismML metadata and rejects the tensor type for its llama.cpp and bitnet.cpp profiles. This supports a documentation finding, not a claim that the model is broken.",
-    "ru": "Ядро принимает метаданные PrismML и отклоняет тип тензора для своих профилей llama.cpp и bitnet.cpp. Это основание уточнить документацию, а не заявлять, что модель неисправна.",
-    "es": "El verificador acepta los metadatos de PrismML y rechaza el tipo de tensor en sus perfiles llama.cpp y bitnet.cpp. Esto justifica precisar la documentación, no afirmar que el modelo esté dañado.",
-    "pt-BR": "O verificador aceita metadados no perfil PrismML e rejeita o tipo de tensor nos perfis llama.cpp e bitnet.cpp. Isso indica uma ressalva de documentação, não que o modelo esteja danificado.",
-    "zh-CN": "检查器接受 PrismML 配置下的元数据，在 llama.cpp 和 bitnet.cpp 配置下拒绝该张量类型。这支持文档层面的限定，不说明模型损坏。",
-    "ja": "チェッカーは PrismML のメタデータを受理し、llama.cpp と bitnet.cpp のプロファイルではテンソル型を拒否しました。文書への注記が必要という所見であり、モデルの破損を意味しません。"
+    "en": "The checker accepts PrismML metadata and rejects the file in its llama.cpp, bitnet.cpp and mortar.cpp profiles. This supports a documentation finding, not a claim that the model is broken.",
+    "ru": "Ядро принимает метаданные PrismML и отклоняет файл в профилях llama.cpp, bitnet.cpp и mortar.cpp. Это основание уточнить документацию, а не заявлять, что модель неисправна.",
+    "es": "El verificador acepta los metadatos de PrismML y rechaza el archivo en sus perfiles llama.cpp, bitnet.cpp y mortar.cpp. Esto justifica precisar la documentación, no afirmar que el modelo esté dañado.",
+    "pt-BR": "O verificador aceita metadados no perfil PrismML e rejeita o arquivo nos perfis llama.cpp, bitnet.cpp e mortar.cpp. Isso indica uma ressalva de documentação, não que o modelo esteja danificado.",
+    "zh-CN": "检查器接受 PrismML 配置下的元数据，在 llama.cpp、bitnet.cpp 和 mortar.cpp 配置下拒绝该文件。这支持文档层面的限定，不说明模型损坏。",
+    "ja": "チェッカーは PrismML のメタデータを受理し、llama.cpp、bitnet.cpp、mortar.cpp のプロファイルではこのファイルを拒否しました。文書への注記が必要という所見であり、モデルの破損を意味しません。"
   },
   "evidence": {
     "en": "Evidence and reproducibility",
@@ -280,12 +280,12 @@ export const copy = {
     "ja": "対応表記：対応を謳う前に実際に試験したビルドを明記してください。チェッカーの判定だけでは不十分です。"
   },
   "f2": {
-    "en": "Traceability gap: this packaged checker has a recorded SHA-256, but its source commit and exact runtime revision mapping have not been independently verified. Resolve this before a release sign-off.",
-    "ru": "Пробел прослеживаемости: SHA-256 ядра известен, но его исходный коммит и соответствие точным ревизиям сред независимо не подтверждены. Устраните это до окончательного согласования релиза.",
-    "es": "Falta de trazabilidad: se conoce el SHA-256, pero no se verificaron de forma independiente el commit fuente ni las revisiones de los motores. Resuélvelo antes de aprobar el lanzamiento.",
-    "pt-BR": "Lacuna de rastreabilidade: há SHA-256 registrado, mas o commit-fonte e as revisões dos ambientes não foram verificados independentemente. Resolva antes de aprovar o lançamento.",
-    "zh-CN": "可追溯性缺口：已记录检查器 SHA-256，但源代码提交与运行时版本映射尚未独立验证。发布审批前应补齐。",
-    "ja": "追跡可能性の不足：SHA-256 は記録済みですが、ソースコミットとランタイムの正確なリビジョン対応は独立検証していません。リリース承認前に確認が必要です。"
+    "en": "Traceability: the checker binary is traceable to a public source commit and rebuilds byte for byte. The mapping from each profile to an exact runtime revision comes from the upstream specs and was not re-verified here. Cite it, with the parser hash, in the release notes.",
+    "ru": "Прослеживаемость: ядро восстанавливается из публичного исходного коммита побайтно. Соответствие профилей точным ревизиям сред взято из спецификаций проекта и здесь заново не проверялось. Укажите его вместе с хешем ядра в заметках к релизу.",
+    "es": "Trazabilidad: el verificador se reconstruye byte a byte desde un commit público. La correspondencia entre perfiles y revisiones exactas de los motores proviene de las especificaciones del proyecto y no se volvió a verificar aquí. Cítala, junto con el hash, en las notas de la versión.",
+    "pt-BR": "Rastreabilidade: o verificador é reconstruído byte a byte a partir de um commit público. A correspondência entre perfis e revisões exatas dos ambientes vem das especificações do projeto e não foi verificada novamente aqui. Cite-a, com o hash, nas notas da versão.",
+    "zh-CN": "可追溯性：检查器可从公开源代码提交逐字节重建。各配置与运行时具体版本的对应关系来自上游规格，本报告未重新核验。请将其与解析器哈希一并写入发布说明。",
+    "ja": "追跡可能性：チェッカーは公開ソースコミットからバイト単位で再構築できます。各プロファイルとランタイムの正確なリビジョンの対応は上流の仕様に基づき、ここでは再検証していません。パーサーのハッシュとともにリリースノートへ記載してください。"
   },
   "f3": {
     "en": "Execution not tested: run a separate load and inference smoke test on the intended runtime and hardware. Record commands, versions and logs.",

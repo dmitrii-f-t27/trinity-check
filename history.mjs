@@ -43,7 +43,7 @@ function checkReport(r,where){
  if(!/^[a-f0-9]{40}$/.test(r.revision))bad(where,t('нет коммита модели'));
  if(!isTime(r.checked_at))bad(where,t('нет времени проверки'));
  if(!isCount(r.bytes)||!isCount(r.fileSize)||typeof r.split!=='boolean')bad(where,t('нет размеров файла'));
- if(!Array.isArray(r.rows)||r.rows.length!==3)bad(where,t('нужны решения трёх сред выполнения'));
+ if(!Array.isArray(r.rows)||r.rows.length<3||r.rows.length>4)bad(where,t('нужны решения сред выполнения'));
  for(const row of r.rows){
   const w=row?.walk;
   if(typeof row?.name!=='string'||typeof w?.status!=='number'||typeof w.reader!=='number'||!isCount(w.ternary)||!isCount(w.ternary_ok))bad(where,t('повреждена строка среды выполнения'));

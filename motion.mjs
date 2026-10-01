@@ -75,7 +75,7 @@ if (privacy) {
 // Demo data is the published sample report TC-SAMPLE-001 (Bonsai PTQ1_0).
 const DEMO = {
   name: 'Ternary-Bonsai-2-27B-PTQ1_0.gguf', fileSize: 5946648928, bytes: 16777216, dataStart: 11120992,
-  lanes: [['llama.cpp', 'refuse', -80], ['PrismML', 'accept', 0], ['bitnet.cpp', 'refuse', -80]],
+  lanes: [['llama.cpp', 'refuse', -80], ['PrismML', 'accept', 0], ['bitnet.cpp', 'refuse', -80], ['mortar.cpp', 'refuse', -72]],
 };
 const REPLAY_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8a5 5 0 1 0 1.6-3.7M3 2.5v2.8h2.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 

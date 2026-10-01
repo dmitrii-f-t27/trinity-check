@@ -1,19 +1,29 @@
-Trinity Check UI - 2026-09-28
+Trinity Check UI - updated 2026-10-01
 
-Upstream browser checker:
-https://dmitrii-f-t27.github.io/trinity-memory/check.html
-Source repository:
-https://github.com/dmitrii-f-t27/trinity-memory
+Parser: formats.wasm, SHA-256
+76760c0124ed3bef9c322b3dd6ceffb331607c0f990ce4075f83658a5770d7d0
 
-The following parser assets were retrieved unchanged from that deployed checker
-on 2026-09-28: formats.wasm, wasm-live.mjs, header-fetch.mjs, check-worker.mjs.
-Parser SHA-256:
-2a3d397991ab3fd6aa29ea2b9ad153ece90aa6fe6acf4410392fb90d6ecf1452
+Source and reproducibility
+- Public source: https://github.com/dmitrii-f-t27/trinity-memory, commit
+  096efbd01142ebafbeb2c7cd364e9f6e57bf41f6.
+- Compiler: gHashTag/t27 at the commit pinned in native/compiler.lock of that
+  commit (bff21b85b206a0dd367876343e56dcd8312d81ba).
+- On 2026-10-01 formats.wasm was rebuilt from that commit with
+  tools/build-t27.sh (clang 18.1.3, Ubuntu LLD 18.1.3, on a clean checkout). The rebuilt file
+  is byte-identical to the file published at
+  https://dmitrii-f-t27.github.io/trinity-memory/formats.wasm and used here.
+- Not independently re-verified here: the per-runtime revision mapping. It is
+  documented upstream in specs/runtimes/*.json and t27/runtimes.t27.
 
-Runtime revisions are compiled into that parser. This UI does not claim to test
-the latest or every revision of llama.cpp, PrismML, or bitnet.cpp.
-The source commit of the deployed binary has not been independently established.
+Runtime profiles in this parser: llama.cpp, PrismML, bitnet.cpp, mortar.cpp.
+This UI does not claim to test the latest or every revision of any runtime.
 
 Scope: bounded GGUF header/metadata inspection; no weight evaluation, quality,
 speed, or inference-success guarantee. One split part is not a complete model.
 The original Apache 2.0 license is included in LICENSE.
+
+Earlier parser: the first public version of this site (2026-09-28) used a
+three-profile parser with SHA-256
+2a3d397991ab3fd6aa29ea2b9ad153ece90aa6fe6acf4410392fb90d6ecf1452 whose source
+commit had not been established. It is no longer shipped. For this sample file
+its three profiles gave the same decisions as the current parser.

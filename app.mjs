@@ -5,7 +5,7 @@ import {statusText,states,node,verdict,filename,when,download} from './report-vi
 import {saveRun,getRun} from './history.mjs';
 const $ = id => document.getElementById(id);
 const exampleURL='https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf/resolve/b072e1d3b35a0a630cece372c2127528e0994386/Ternary-Bonsai-2-27B-PTQ1_0.gguf';
-const parserSHA='2a3d397991ab3fd6aa29ea2b9ad153ece90aa6fe6acf4410392fb90d6ecf1452';
+const parserSHA='76760c0124ed3bef9c322b3dd6ceffb331607c0f990ce4075f83658a5770d7d0';
 const serial = value => JSON.parse(JSON.stringify(value,(_,v)=>typeof v==='bigint'?v.toString():v));
 let worker, report, rejectRun, job;
 let mode='single', active=false;

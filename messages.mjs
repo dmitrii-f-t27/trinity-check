@@ -7,12 +7,12 @@ export const messages = {
     "zh-CN": "Trinity Check — GGUF 文件头检查",
     "ja": "Trinity Check — GGUF ヘッダーチェック"
   },
-  "Проверьте заголовок публичной GGUF-модели для трёх зафиксированных сред выполнения. Анализ происходит в вашем браузере.": {
-    "en": "Check a public GGUF model header against three pinned runtimes. Analysis runs in your browser.",
-    "es": "Comprueba la cabecera de un modelo GGUF público con tres versiones fijas de motores de ejecución. El análisis se realiza en tu navegador.",
-    "pt-BR": "Verifique o cabeçalho de um modelo GGUF público com três versões fixas de ambientes de execução. A análise ocorre no seu navegador.",
-    "zh-CN": "针对三个固定版本的运行时检查公开 GGUF 模型的文件头。分析在浏览器中进行。",
-    "ja": "公開 GGUF モデルのヘッダーを、バージョン固定の3つのランタイムでチェックします。解析はブラウザー内で行われます。"
+  "Проверьте заголовок публичной GGUF-модели для зафиксированных версий сред выполнения. Анализ происходит в вашем браузере.": {
+    "en": "Check a public GGUF model header against pinned runtimes. Analysis runs in your browser.",
+    "es": "Comprueba la cabecera de un modelo GGUF público con versiones fijas de motores de ejecución. El análisis se realiza en tu navegador.",
+    "pt-BR": "Verifique o cabeçalho de um modelo GGUF público com versões fixas de ambientes de execução. A análise ocorre no seu navegador.",
+    "zh-CN": "针对固定版本的运行时检查公开 GGUF 模型的文件头。分析在浏览器中进行。",
+    "ja": "公開 GGUF モデルのヘッダーを、バージョン固定のランタイムでチェックします。解析はブラウザー内で行われます。"
   },
   "Trinity Check, главная": {
     "en": "Trinity Check, home",
@@ -63,12 +63,12 @@ export const messages = {
     "zh-CN": "从文件头开始。",
     "ja": "まずはヘッダーから。"
   },
-  "Проверьте один GGUF-файл или пакет ссылок с Hugging Face. Trinity проверит структуру и метаданные для трёх зафиксированных версий сред выполнения.": {
-    "en": "Check one GGUF file or a batch of Hugging Face links. Trinity checks the structure and metadata against three pinned runtime versions.",
-    "es": "Comprueba un archivo GGUF o un lote de enlaces de Hugging Face. Trinity comprueba la estructura y los metadatos con tres versiones fijas de motores de ejecución.",
-    "pt-BR": "Verifique um arquivo GGUF ou um lote de links do Hugging Face. O Trinity verifica a estrutura e os metadados com três versões fixas de ambientes de execução.",
-    "zh-CN": "检查一个 GGUF 文件或一批 Hugging Face 链接。Trinity 针对三个固定版本的运行时检查结构和元数据。",
-    "ja": "GGUF ファイル1件、または Hugging Face リンクをまとめてチェック。Trinity は、バージョン固定の3つのランタイムに対して構造とメタデータを検証します。"
+  "Проверьте один GGUF-файл или пакет ссылок с Hugging Face. Trinity проверит структуру и метаданные для зафиксированных версий сред выполнения.": {
+    "en": "Check one GGUF file or a batch of Hugging Face links. Trinity checks the structure and metadata against pinned runtime versions.",
+    "es": "Comprueba un archivo GGUF o un lote de enlaces de Hugging Face. Trinity comprueba la estructura y los metadatos con versiones fijas de motores de ejecución.",
+    "pt-BR": "Verifique um arquivo GGUF ou um lote de links do Hugging Face. O Trinity verifica a estrutura e os metadados com versões fixas de ambientes de execução.",
+    "zh-CN": "检查一个 GGUF 文件或一批 Hugging Face 链接。Trinity 针对固定版本的运行时检查结构和元数据。",
+    "ja": "GGUF ファイル1件、または Hugging Face リンクをまとめてチェック。Trinity は、バージョン固定のランタイムに対して構造とメタデータを検証します。"
   },
   "Выберите модель": {
     "en": "Choose a model",
@@ -203,19 +203,19 @@ export const messages = {
     "zh-CN": "已读取的 GGUF 文件头是否有效。",
     "ja": "読み取った GGUF ヘッダーの妥当性。"
   },
-  "Три среды выполнения": {
-    "en": "Three runtimes",
-    "es": "Tres motores de ejecución",
-    "pt-BR": "Três ambientes de execução",
-    "zh-CN": "三个运行时",
-    "ja": "3つのランタイム"
+  "Среды выполнения": {
+    "en": "Runtimes",
+    "es": "Motores de ejecución",
+    "pt-BR": "Ambientes de execução",
+    "zh-CN": "运行时",
+    "ja": "ランタイム"
   },
-  "Решение проверяющего ядра для llama.cpp, PrismML и bitnet.cpp.": {
-    "en": "Checker results for llama.cpp, PrismML and bitnet.cpp.",
-    "es": "Resultados del verificador para llama.cpp, PrismML y bitnet.cpp.",
-    "pt-BR": "Resultados do verificador para llama.cpp, PrismML e bitnet.cpp.",
-    "zh-CN": "检查引擎对 llama.cpp、PrismML 和 bitnet.cpp 的判定。",
-    "ja": "llama.cpp、PrismML、bitnet.cpp に対するチェッカーの判定。"
+  "Решение проверяющего ядра для llama.cpp, PrismML, bitnet.cpp и mortar.cpp.": {
+    "en": "Checker results for llama.cpp, PrismML, bitnet.cpp and mortar.cpp.",
+    "es": "Resultados del verificador para llama.cpp, PrismML, bitnet.cpp y mortar.cpp.",
+    "pt-BR": "Resultados do verificador para llama.cpp, PrismML, bitnet.cpp e mortar.cpp.",
+    "zh-CN": "检查引擎对 llama.cpp、PrismML、bitnet.cpp、mortar.cpp 和 mortar.cpp 的判定。",
+    "ja": "llama.cpp、PrismML、bitnet.cpp、mortar.cpp に対するチェッカーの判定。"
   },
   "Версия модели": {
     "en": "Model revision",
@@ -1358,12 +1358,12 @@ export const messages = {
     "zh-CN": "缺少文件大小",
     "ja": "ファイルサイズがありません"
   },
-  "нужны решения трёх сред выполнения": {
-    "en": "results for three runtimes are required",
-    "es": "se necesitan resultados de tres motores de ejecución",
-    "pt-BR": "são necessários resultados de três ambientes de execução",
-    "zh-CN": "需要三个运行时的结果",
-    "ja": "3つのランタイムの結果が必要です"
+  "нужны решения сред выполнения": {
+    "en": "runtime results are required",
+    "es": "se necesitan resultados de los motores de ejecución",
+    "pt-BR": "são necessários resultados dos ambientes de execução",
+    "zh-CN": "需要运行时的结果",
+    "ja": "ランタイムの結果が必要です"
   },
   "повреждена строка среды выполнения": {
     "en": "invalid runtime row",
@@ -1491,12 +1491,12 @@ export const messages = {
     "zh-CN": "GGUF 文件头检查",
     "ja": "GGUF ヘッダーチェック"
   },
-  "Совместимость с llama.cpp, PrismML и bitnet.cpp — до загрузки модели.": {
-    "en": "Check compatibility with llama.cpp, PrismML and bitnet.cpp before downloading.",
-    "es": "Comprueba la compatibilidad con llama.cpp, PrismML y bitnet.cpp antes de descargar.",
-    "pt-BR": "Verifique a compatibilidade com llama.cpp, PrismML e bitnet.cpp antes de baixar.",
-    "zh-CN": "下载前，检查与 llama.cpp、PrismML 和 bitnet.cpp 的兼容性。",
-    "ja": "ダウンロード前に llama.cpp、PrismML、bitnet.cpp との互換性を確認。"
+  "Совместимость с llama.cpp, PrismML, bitnet.cpp и mortar.cpp — до загрузки модели.": {
+    "en": "Check compatibility with llama.cpp, PrismML, bitnet.cpp and mortar.cpp before downloading.",
+    "es": "Comprueba la compatibilidad con llama.cpp, PrismML, bitnet.cpp y mortar.cpp antes de descargar.",
+    "pt-BR": "Verifique a compatibilidade com llama.cpp, PrismML, bitnet.cpp e mortar.cpp antes de baixar.",
+    "zh-CN": "下载前，检查与 llama.cpp、PrismML、bitnet.cpp、mortar.cpp 和 mortar.cpp 的兼容性。",
+    "ja": "ダウンロード前に llama.cpp、PrismML、bitnet.cpp、mortar.cpp との互換性を確認。"
   },
   "Сохранённые проверки в этом браузере. Откройте отчёт или повторите проверку.": {
     "en": "Checks saved in this browser. Open a report or run the check again.",
@@ -1540,12 +1540,12 @@ export const messages = {
     "zh-CN": "下载完整文件前，先检查模型文件头。",
     "ja": "ファイル全体をダウンロードする前に、モデルのヘッダーを確認。"
   },
-  "Сравните решения проверяющего ядра для llama.cpp, PrismML и bitnet.cpp. Это предварительная проверка, а не гарантия запуска.": {
-    "en": "Compare the checker’s decisions for llama.cpp, PrismML and bitnet.cpp. This is a preliminary check, not a guarantee that the model will run.",
-    "es": "Compara las decisiones del verificador para llama.cpp, PrismML y bitnet.cpp. Es una comprobación preliminar, no una garantía de que el modelo funcione.",
-    "pt-BR": "Compare as decisões do verificador para llama.cpp, PrismML e bitnet.cpp. É uma verificação preliminar, não uma garantia de execução do modelo.",
-    "zh-CN": "比较检查器针对 llama.cpp、PrismML 和 bitnet.cpp 的判定。这是初步检查，并不保证模型能够运行。",
-    "ja": "llama.cpp、PrismML、bitnet.cpp に対するチェッカーの判定を比較します。事前チェックであり、モデルの動作を保証するものではありません。"
+  "Сравните решения проверяющего ядра для llama.cpp, PrismML, bitnet.cpp и mortar.cpp. Это предварительная проверка, а не гарантия запуска.": {
+    "en": "Compare the checker’s decisions for llama.cpp, PrismML, bitnet.cpp and mortar.cpp. This is a preliminary check, not a guarantee that the model will run.",
+    "es": "Compara las decisiones del verificador para llama.cpp, PrismML, bitnet.cpp y mortar.cpp. Es una comprobación preliminar, no una garantía de que el modelo funcione.",
+    "pt-BR": "Compare as decisões do verificador para llama.cpp, PrismML, bitnet.cpp e mortar.cpp. É uma verificação preliminar, não uma garantia de execução do modelo.",
+    "zh-CN": "比较检查器针对 llama.cpp、PrismML、bitnet.cpp、mortar.cpp 和 mortar.cpp 的判定。这是初步检查，并不保证模型能够运行。",
+    "ja": "llama.cpp、PrismML、bitnet.cpp、mortar.cpp に対するチェッカーの判定を比較します。事前チェックであり、モデルの動作を保証するものではありません。"
   },
   "Кому и зачем это полезно": {
     "en": "Who it helps and when to use it",
@@ -1589,12 +1589,12 @@ export const messages = {
     "zh-CN": "排查兼容性问题",
     "ja": "互換性を調べるとき"
   },
-  "Сопоставьте решения для трёх зафиксированных версий сред выполнения. История доступна в этом браузере; отчёты можно экспортировать.": {
-    "en": "Compare decisions for three pinned runtime versions. History stays in this browser; reports can be exported.",
-    "es": "Compara las decisiones para tres versiones fijas de motores de ejecución. El historial se guarda en este navegador y los informes se pueden exportar.",
-    "pt-BR": "Compare as decisões para três versões fixas de ambientes de execução. O histórico fica neste navegador; os relatórios podem ser exportados.",
-    "zh-CN": "对照三个固定运行时版本的判定。历史记录保存在当前浏览器中，报告可以导出。",
-    "ja": "バージョンが固定された3つのランタイムに対する判定を比較できます。履歴はこのブラウザーに保存され、レポートはエクスポートできます。"
+  "Сопоставьте решения для зафиксированных версий сред выполнения. История доступна в этом браузере; отчёты можно экспортировать.": {
+    "en": "Compare decisions for pinned runtime versions. History stays in this browser; reports can be exported.",
+    "es": "Compara las decisiones para versiones fijas de motores de ejecución. El historial se guarda en este navegador y los informes se pueden exportar.",
+    "pt-BR": "Compare as decisões para versões fixas de ambientes de execução. O histórico fica neste navegador; os relatórios podem ser exportados.",
+    "zh-CN": "对照固定运行时版本的判定。历史记录保存在当前浏览器中，报告可以导出。",
+    "ja": "バージョンが固定されたランタイムに対する判定を比較できます。履歴はこのブラウザーに保存され、レポートはエクスポートできます。"
   },
   "Trinity Check — бесплатная предварительная проверка файлов ИИ-моделей. Сайт помогает обнаружить некоторые проблемы совместимости до скачивания всего файла.": {
     "en": "Trinity Check is a free preliminary check for AI model files. It helps identify some compatibility problems before you download the entire file.",
@@ -1617,12 +1617,12 @@ export const messages = {
     "zh-CN": "如何使用和理解结果",
     "ja": "使い方と結果の読み方"
   },
-  "Вставьте публичную ссылку на GGUF с Hugging Face или выберите пример Bonsai. Нажмите «Проверить заголовок» — браузер прочитает начало файла и покажет отчёт для llama.cpp, PrismML и bitnet.cpp.": {
-    "en": "Paste a public Hugging Face GGUF link or use the Bonsai example. Select “Check header”: your browser reads the beginning of the file and shows a report for llama.cpp, PrismML and bitnet.cpp.",
-    "es": "Pega un enlace GGUF público de Hugging Face o usa el ejemplo Bonsai. Pulsa «Comprobar cabecera»: el navegador leerá el inicio del archivo y mostrará un informe para llama.cpp, PrismML y bitnet.cpp.",
-    "pt-BR": "Cole um link GGUF público do Hugging Face ou use o exemplo Bonsai. Selecione «Verificar cabeçalho»: o navegador lê o início do arquivo e mostra um relatório para llama.cpp, PrismML e bitnet.cpp.",
-    "zh-CN": "粘贴 Hugging Face 上公开的 GGUF 链接，或使用 Bonsai 示例。点击检查文件头后，浏览器读取文件开头，并显示针对 llama.cpp、PrismML 和 bitnet.cpp 的报告。",
-    "ja": "Hugging Face の公開 GGUF リンクを貼り付けるか、Bonsai の例を選びます。ヘッダーのチェックを実行すると、ブラウザーがファイルの先頭を読み取り、llama.cpp、PrismML、bitnet.cpp 向けのレポートを表示します。"
+  "Вставьте публичную ссылку на GGUF с Hugging Face или выберите пример Bonsai. Нажмите «Проверить заголовок» — браузер прочитает начало файла и покажет отчёт для llama.cpp, PrismML, bitnet.cpp и mortar.cpp.": {
+    "en": "Paste a public Hugging Face GGUF link or use the Bonsai example. Select “Check header”: your browser reads the beginning of the file and shows a report for llama.cpp, PrismML, bitnet.cpp and mortar.cpp.",
+    "es": "Pega un enlace GGUF público de Hugging Face o usa el ejemplo Bonsai. Pulsa «Comprobar cabecera»: el navegador leerá el inicio del archivo y mostrará un informe para llama.cpp, PrismML, bitnet.cpp y mortar.cpp.",
+    "pt-BR": "Cole um link GGUF público do Hugging Face ou use o exemplo Bonsai. Selecione «Verificar cabeçalho»: o navegador lê o início do arquivo e mostra um relatório para llama.cpp, PrismML, bitnet.cpp e mortar.cpp.",
+    "zh-CN": "粘贴 Hugging Face 上公开的 GGUF 链接，或使用 Bonsai 示例。点击检查文件头后，浏览器读取文件开头，并显示针对 llama.cpp、PrismML、bitnet.cpp、mortar.cpp 和 mortar.cpp 的报告。",
+    "ja": "Hugging Face の公開 GGUF リンクを貼り付けるか、Bonsai の例を選びます。ヘッダーのチェックを実行すると、ブラウザーがファイルの先頭を読み取り、llama.cpp、PrismML、bitnet.cpp、mortar.cpp 向けのレポートを表示します。"
   },
   "«Принято» означает, что метаданные прошли проверку выбранного профиля ядра. «Отклонено» указывает на обнаруженное несоответствие. Это не запуск модели и не гарантия её работы: результат относится к версиям, заложенным в проверяющее ядро.": {
     "en": "“Accepted” means the metadata passed the selected checker profile. “Rejected” indicates a detected mismatch. This does not run the model or guarantee it will work: the result applies to the versions represented in the checker.",
@@ -1784,5 +1784,19 @@ export const messages = {
     "pt-BR": "Sobre a auditoria",
     "zh-CN": "了解审查服务",
     "ja": "監査について"
+  },
+  "Метаданные связанного выходного слоя Hadamard": {
+    "en": "Hadamard tied output metadata",
+    "es": "Metadatos Hadamard de la salida enlazada",
+    "pt-BR": "Metadados Hadamard da saída vinculada",
+    "zh-CN": "Hadamard 绑定输出元数据",
+    "ja": "Hadamard 共有出力のメタデータ"
+  },
+  "Метаданные точности активаций тензоров": {
+    "en": "Tensor activation precision metadata",
+    "es": "Metadatos de precisión de activación de tensores",
+    "pt-BR": "Metadados de precisão de ativação dos tensores",
+    "zh-CN": "张量激活精度元数据",
+    "ja": "テンソル活性化精度のメタデータ"
   }
 };
