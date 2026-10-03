@@ -5,7 +5,7 @@ export const contactEmail='dmitrii.f@t27.ai';
 // Dashboard (https://buy.stripe.com/...). Empty keeps the payment block hidden.
 // Set its confirmation page to <site>/thanks.html. pilotPrice is display text
 // only; the amount charged is whatever the Payment Link itself defines.
-export const paymentLink='';
+export const paymentLink='https://buy.stripe.com/test_00wcN55ZrcsK2jJbmagrS00';
 export const pilotPrice='250 USD';
 export const textFor=key=>copy[key]?.[locale]??copy[key]?.en??key;
 export function prepareEmail({kind,model,runtime,message}){
