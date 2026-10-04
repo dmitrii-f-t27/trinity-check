@@ -10,10 +10,14 @@ export const pilotPrice='250 USD';
 // Launch month: the pilot is free until this date (inclusive, UTC). After it the
 // free block hides itself and the Stripe/quote text applies again.
 export const freeUntil='2026-11-04';
-// Voluntary USDT support. Both must be set by the owner; the block stays hidden
-// while either is empty. The network matters: funds sent on another network are lost.
-export const usdtAddress='';
-export const usdtNetwork='';
+// Voluntary USDT support, one entry per network. Given by the owner on 2026-10-04.
+// The network matters: funds sent on another network are lost.
+export const usdtWallets=[
+ {network:'TRON (TRC20)',address:'TU6yGqgy1KaKFS1xfo5fUM79nYXwjQnzjs'},
+ {network:'Ethereum (ERC20)',address:'0xE3E2e63a32F638b267252FBfBc876677D95C3d20'},
+ {network:'Solana',address:'7C7ZBZ1AkeFKwiq1BsimeKzsVuSsLt454NSxQfLWxds7'},
+ {network:'TON',address:'UQDeWCDK6sKxYfp9J0WvQwyoHLmiYSSoK7mygSjXdgT76mTt'}
+];
 export const textFor=key=>copy[key]?.[locale]??copy[key]?.en??key;
 export function prepareEmail({kind,model,runtime,message}){
  const subject=kind==='feedback'?'Trinity Check feedback':'Model Release Audit request';
@@ -27,8 +31,8 @@ if(typeof document!=='undefined'){
  const freeActive=new Date().toISOString().slice(0,10)<=freeUntil;
  for(const block of document.querySelectorAll('[data-free]'))block.hidden=!freeActive;
  if(freeActive){for(const q of document.querySelectorAll('[data-copy="quote"]'))q.textContent=textFor('quoteFree');for(const [k,f] of [['steps','stepsFree'],['step2','step2Free'],['step3','step3Free']])for(const e of document.querySelectorAll(`[data-copy="${k}"]`))e.textContent=textFor(f);}
- const tipOk=/^[A-Za-z0-9]{26,64}$/.test(usdtAddress)&&usdtNetwork;
- for(const block of document.querySelectorAll('[data-tip]')){block.hidden=!tipOk;if(!tipOk)continue;block.querySelector('[data-tip-address]').textContent=usdtAddress;block.querySelector('[data-tip-network]').textContent=usdtNetwork;const btn=block.querySelector('[data-tip-copy]'),st=block.querySelector('[data-tip-status]');btn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(usdtAddress);st.textContent=textFor('tipCopied');}catch{const r=document.createRange();r.selectNodeContents(block.querySelector('[data-tip-address]'));const sel=getSelection();sel.removeAllRanges();sel.addRange(r);}});}
+ const wallets=usdtWallets.filter(w=>/^[A-Za-z0-9_-]{26,64}$/.test(w.address)&&w.network);
+ for(const block of document.querySelectorAll('[data-tip]')){block.hidden=!wallets.length;if(!wallets.length)continue;const list=block.querySelector('[data-tip-list]'),st=block.querySelector('[data-tip-status]');list.textContent='';for(const w of wallets){const li=document.createElement('li');const net=document.createElement('b');net.textContent=w.network;const code=document.createElement('code');code.className='tip-address';code.textContent=w.address;const btn=document.createElement('button');btn.type='button';btn.className='tip-copy';btn.textContent=textFor('tipCopy');btn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(w.address);st.textContent=`${w.network}: ${textFor('tipCopied')}`;}catch{const r=document.createRange();r.selectNodeContents(code);const sel=getSelection();sel.removeAllRanges();sel.addRange(r);}});li.append(net,code,btn);list.append(li);}}
  if(!freeActive&&/^https:\/\/buy\.stripe\.com\//.test(paymentLink)){
   for(const block of document.querySelectorAll('[data-pay]')){block.hidden=false;for(const a of block.querySelectorAll('[data-pay-link]'))a.href=paymentLink;const price=block.querySelector('[data-price]');if(price){price.textContent=pilotPrice;price.hidden=!pilotPrice;}}
   if(pilotPrice)for(const q of document.querySelectorAll('[data-copy="quote"]'))q.hidden=true;
