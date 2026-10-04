@@ -5,8 +5,15 @@ export const contactEmail='dmitrii.f@t27.ai';
 // Dashboard (https://buy.stripe.com/...). Empty keeps the payment block hidden.
 // Set its confirmation page to <site>/thanks.html. pilotPrice is display text
 // only; the amount charged is whatever the Payment Link itself defines.
-export const paymentLink='https://buy.stripe.com/test_00wcN55ZrcsK2jJbmagrS00';
+export const paymentLink='';
 export const pilotPrice='250 USD';
+// Launch month: the pilot is free until this date (inclusive, UTC). After it the
+// free block hides itself and the Stripe/quote text applies again.
+export const freeUntil='2026-11-04';
+// Voluntary USDT support. Both must be set by the owner; the block stays hidden
+// while either is empty. The network matters: funds sent on another network are lost.
+export const usdtAddress='';
+export const usdtNetwork='';
 export const textFor=key=>copy[key]?.[locale]??copy[key]?.en??key;
 export function prepareEmail({kind,model,runtime,message}){
  const subject=kind==='feedback'?'Trinity Check feedback':'Model Release Audit request';
@@ -17,7 +24,12 @@ if(typeof document!=='undefined'){
  for(const el of document.querySelectorAll('[data-copy]'))el.textContent=textFor(el.dataset.copy);
  for(const a of document.querySelectorAll('a[href]')){const url=new URL(a.getAttribute('href'),location.href);if(url.origin===location.origin&&(/\.html$/.test(url.pathname)||url.pathname==='/')){url.searchParams.set('lang',locale);a.href=url.href;}}
  if(document.querySelector('main.commerce'))document.title=document.querySelector('h1').textContent+' — Trinity';
- if(/^https:\/\/buy\.stripe\.com\//.test(paymentLink)){
+ const freeActive=new Date().toISOString().slice(0,10)<=freeUntil;
+ for(const block of document.querySelectorAll('[data-free]'))block.hidden=!freeActive;
+ if(freeActive){for(const q of document.querySelectorAll('[data-copy="quote"]'))q.textContent=textFor('quoteFree');for(const [k,f] of [['steps','stepsFree'],['step2','step2Free'],['step3','step3Free']])for(const e of document.querySelectorAll(`[data-copy="${k}"]`))e.textContent=textFor(f);}
+ const tipOk=/^[A-Za-z0-9]{26,64}$/.test(usdtAddress)&&usdtNetwork;
+ for(const block of document.querySelectorAll('[data-tip]')){block.hidden=!tipOk;if(!tipOk)continue;block.querySelector('[data-tip-address]').textContent=usdtAddress;block.querySelector('[data-tip-network]').textContent=usdtNetwork;const btn=block.querySelector('[data-tip-copy]'),st=block.querySelector('[data-tip-status]');btn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(usdtAddress);st.textContent=textFor('tipCopied');}catch{const r=document.createRange();r.selectNodeContents(block.querySelector('[data-tip-address]'));const sel=getSelection();sel.removeAllRanges();sel.addRange(r);}});}
+ if(!freeActive&&/^https:\/\/buy\.stripe\.com\//.test(paymentLink)){
   for(const block of document.querySelectorAll('[data-pay]')){block.hidden=false;for(const a of block.querySelectorAll('[data-pay-link]'))a.href=paymentLink;const price=block.querySelector('[data-price]');if(price){price.textContent=pilotPrice;price.hidden=!pilotPrice;}}
   if(pilotPrice)for(const q of document.querySelectorAll('[data-copy="quote"]'))q.hidden=true;
  }

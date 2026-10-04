@@ -470,5 +470,93 @@ export const copy = {
     "pt-BR": "Voltar à verificação gratuita",
     "zh-CN": "返回免费检查",
     "ja": "無料チェックに戻る"
+  },
+  "freeKicker": {
+    "en": "Launch month: free",
+    "ru": "Первый месяц — бесплатно",
+    "es": "Mes de lanzamiento: gratis",
+    "pt-BR": "Mês de lançamento: grátis",
+    "zh-CN": "上线首月：免费",
+    "ja": "公開1か月目：無料"
+  },
+  "freeText": {
+    "en": "Until 4 November 2026 the pilot audit is free: up to three agreed public GGUF files, header findings with JSON evidence and one recheck after your fixes. After that the pilot is 250 USD. The scope and the delivery date are agreed with you before any work starts.",
+    "ru": "До 4 ноября 2026 пилотный аудит бесплатный: до трёх согласованных публичных GGUF-файлов, результаты анализа заголовков с доказательствами в JSON и одна повторная проверка после ваших исправлений. Затем пилот стоит 250 USD. Объём и срок согласуются с вами до начала работы.",
+    "es": "Hasta el 4 de noviembre de 2026 la auditoría piloto es gratuita: hasta tres archivos GGUF públicos acordados, hallazgos de cabeceras con evidencias en JSON y una nueva comprobación tras tus correcciones. Después, el piloto cuesta 250 USD. El alcance y la fecha de entrega se acuerdan contigo antes de empezar.",
+    "pt-BR": "Até 4 de novembro de 2026 a auditoria piloto é gratuita: até três arquivos GGUF públicos acordados, resultados de cabeçalho com evidências em JSON e uma nova verificação após suas correções. Depois, o piloto custa 250 USD. O escopo e a data de entrega são combinados com você antes de começar.",
+    "zh-CN": "2026 年 11 月 4 日前，试点审查免费：最多三个约定的公开 GGUF 文件、附 JSON 证据的文件头检查结果，以及在您修复后的一次复查。之后试点价格为 250 美元。范围和交付日期会在开始前与您商定。",
+    "ja": "2026年11月4日までパイロット監査は無料です。対象は、合意した公開 GGUF ファイル最大3つ、JSON の証拠付きヘッダー検査結果、修正後の再確認1回です。その後のパイロット料金は250 USD です。範囲と納期は作業開始前にご相談のうえ決めます。"
+  },
+  "quoteFree": {
+    "en": "Free until 4 November 2026. Scope and delivery date are agreed before work starts.",
+    "ru": "Бесплатно до 4 ноября 2026. Объём и срок согласуются до начала работы.",
+    "es": "Gratis hasta el 4 de noviembre de 2026. El alcance y la fecha de entrega se acuerdan antes de empezar.",
+    "pt-BR": "Grátis até 4 de novembro de 2026. Escopo e data de entrega são combinados antes de começar.",
+    "zh-CN": "2026 年 11 月 4 日前免费。范围和交付日期在开始前商定。",
+    "ja": "2026年11月4日まで無料。範囲と納期は作業開始前に決めます。"
+  },
+  "tipTitle": {
+    "en": "Optional support",
+    "ru": "Поддержать по желанию",
+    "es": "Apoyo opcional",
+    "pt-BR": "Apoio opcional",
+    "zh-CN": "自愿支持",
+    "ja": "任意のご支援"
+  },
+  "tipText": {
+    "en": "If the audit helped, you can send any amount in USDT. This is voluntary: the audit does not depend on it. Check the network before sending; a transfer on a different network cannot be recovered.",
+    "ru": "Если аудит помог, можно отправить любую сумму в USDT. Это добровольно: аудит от этого не зависит. Проверьте сеть перед отправкой: перевод по другой сети вернуть нельзя.",
+    "es": "Si la auditoría te ayudó, puedes enviar cualquier importe en USDT. Es voluntario: la auditoría no depende de ello. Comprueba la red antes de enviar; una transferencia en otra red no se puede recuperar.",
+    "pt-BR": "Se a auditoria ajudou, você pode enviar qualquer valor em USDT. É voluntário: a auditoria não depende disso. Confira a rede antes de enviar; uma transferência em outra rede não pode ser recuperada.",
+    "zh-CN": "如果审查对您有帮助，可以用 USDT 自愿支持任意金额；审查不以此为条件。发送前请确认网络，转到其他网络的资金无法找回。",
+    "ja": "監査がお役に立てた場合は、任意の金額を USDT で送れます。任意であり、監査の条件ではありません。送金前にネットワークを確認してください。別のネットワークへの送金は取り戻せません。"
+  },
+  "tipNetwork": {
+    "en": "Network",
+    "ru": "Сеть",
+    "es": "Red",
+    "pt-BR": "Rede",
+    "zh-CN": "网络",
+    "ja": "ネットワーク"
+  },
+  "tipCopy": {
+    "en": "Copy address",
+    "ru": "Скопировать адрес",
+    "es": "Copiar dirección",
+    "pt-BR": "Copiar endereço",
+    "zh-CN": "复制地址",
+    "ja": "アドレスをコピー"
+  },
+  "tipCopied": {
+    "en": "Address copied",
+    "ru": "Адрес скопирован",
+    "es": "Dirección copiada",
+    "pt-BR": "Endereço copiado",
+    "zh-CN": "地址已复制",
+    "ja": "コピーしました"
+  },
+  "stepsFree": {
+    "en": "Send the release link and target runtime. We agree the file list and delivery date by email. Work starts after agreement; you receive the report and evidence by email.",
+    "ru": "Пришлите ссылку на релиз и целевую среду. По email согласуем список файлов и срок. Работа начинается после согласования; отчёт и доказательства отправим по email.",
+    "es": "Envía el enlace y el motor objetivo. Acordamos archivos y plazo por correo. Tras el acuerdo comienza la revisión; recibirás el informe y las evidencias por correo.",
+    "pt-BR": "Envie o link e o ambiente desejado. Combinamos arquivos e prazo por email. Após o acordo, iniciamos a revisão; o relatório e as evidências chegam por email.",
+    "zh-CN": "发送发布链接和目标运行时。通过邮件确认文件清单及交付日期；确认后开始审查，报告及证据通过邮件交付。",
+    "ja": "リリースのリンクと対象ランタイムを送付してください。メールで対象ファイルと納期を合意し、合意後に着手します。レポートと証拠はメールで納品します。"
+  },
+  "step2Free": {
+    "en": "Agree the file list and delivery date by email.",
+    "ru": "По email согласуем список файлов и срок.",
+    "es": "Acordamos archivos y plazo por correo.",
+    "pt-BR": "Combinamos arquivos e prazo por email.",
+    "zh-CN": "通过邮件确认文件清单及交付日期。",
+    "ja": "メールで対象ファイルと納期を合意。"
+  },
+  "step3Free": {
+    "en": "Work starts after agreement.",
+    "ru": "Работа начинается после согласования.",
+    "es": "La revisión comienza tras el acuerdo.",
+    "pt-BR": "A revisão começa após o acordo.",
+    "zh-CN": "确认后开始审查。",
+    "ja": "合意後に着手。"
   }
 };
