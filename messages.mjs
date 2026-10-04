@@ -1,5 +1,13 @@
 // First-party UI translations.
 export const messages = {
+  "Бесплатно": {"en": "Free", "es": "Gratis", "pt-BR": "Grátis", "zh-CN": "免费", "ja": "無料"},
+  "В браузере": {"en": "Runs in your browser", "es": "En tu navegador", "pt-BR": "No seu navegador", "zh-CN": "在浏览器中运行", "ja": "ブラウザで実行"},
+  "Открытый код": {"en": "Open source", "es": "Código abierto", "pt-BR": "Código aberto", "zh-CN": "开源", "ja": "オープンソース"},
+  "Проверьте GGUF по четырём средам выполнения до скачивания": {"en": "Check a GGUF against four runtimes before you download it", "es": "Comprueba un GGUF con cuatro motores antes de descargarlo", "pt-BR": "Verifique um GGUF em quatro runtimes antes de baixar", "zh-CN": "下载前，用四个运行时检查 GGUF", "ja": "ダウンロード前に、4つのランタイムで GGUF を確認"},
+  "Браузер читает только начало файла (до 256 МиБ) и показывает, как его заголовок прочитают llama.cpp, PrismML, bitnet.cpp и mortar.cpp. Файл никуда не загружается, модель не запускается.": {"en": "Your browser reads only the start of the file (up to 256 MiB) and shows how llama.cpp, PrismML, bitnet.cpp and mortar.cpp read its header. The file is not uploaded and the model is not run.", "es": "Tu navegador lee solo el inicio del archivo (hasta 256 MiB) y muestra cómo llama.cpp, PrismML, bitnet.cpp y mortar.cpp leen su cabecera. El archivo no se sube y el modelo no se ejecuta.", "pt-BR": "Seu navegador lê só o início do arquivo (até 256 MiB) e mostra como llama.cpp, PrismML, bitnet.cpp e mortar.cpp leem o cabeçalho. O arquivo não é enviado e o modelo não é executado.", "zh-CN": "浏览器只读取文件开头（最多 256 MiB），并显示 llama.cpp、PrismML、bitnet.cpp 和 mortar.cpp 如何读取其文件头。文件不会上传，模型也不会运行。", "ja": "ブラウザはファイルの先頭（最大 256 MiB）だけを読み、llama.cpp、PrismML、bitnet.cpp、mortar.cpp がそのヘッダーをどう読むかを表示します。ファイルはアップロードされず、モデルも実行されません。"},
+  "Парсер закреплён": {"en": "Pinned parser", "es": "Analizador fijado", "pt-BR": "Analisador fixado", "zh-CN": "固定版本解析器", "ja": "固定パーサー"},
+  "Без загрузки на сервер": {"en": "No upload", "es": "Sin subida", "pt-BR": "Sem envio", "zh-CN": "不上传", "ja": "アップロードなし"},
+  "Также на Hugging Face": {"en": "Also on Hugging Face", "es": "También en Hugging Face", "pt-BR": "Também no Hugging Face", "zh-CN": "也在 Hugging Face 上", "ja": "Hugging Face でも公開"},
   "Trinity Check — проверка заголовка GGUF": {
     "en": "Trinity Check — GGUF header check",
     "es": "Trinity Check — comprobación de cabeceras GGUF",

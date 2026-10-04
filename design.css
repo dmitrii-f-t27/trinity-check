@@ -1,0 +1,66 @@
+/* Design layer (DESIGN.md). Loaded after the other stylesheets: it sets the type
+   system and tokens, the hero and the header, without touching component logic. */
+@font-face{font-family:"Geist";src:url("fonts/Geist-Variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url("fonts/GeistMono-Variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+
+:root{
+ --font-sans:"Geist",system-ui,-apple-system,"Segoe UI","Hiragino Sans","PingFang SC","Noto Sans CJK SC",sans-serif;
+ --font-mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+ --bg:#f6f8f7;--surface:#fff;--ink:#14201c;--muted:#56645f;--border:#dbe3df;--soft:#eef3f0;
+ --accent:#136653;--accent-soft:#e6f2ec;--refuse:#9c3530;
+ font-family:var(--font-sans);color:var(--ink);background:var(--bg);line-height:1.6;
+ font-feature-settings:"ss01","cv11";
+}
+body{background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+code,kbd,samp,pre,textarea#urls,.stage-file,.seg,.lane b,.use-cases dt::before,.deliverables li::before,.timeline li b{font-family:var(--font-mono)}
+.result-table,.file-meta,.stage-bytes,.facts{font-variant-numeric:tabular-nums}
+
+/* Header: quieter chrome so the instrument leads. */
+header{background:rgba(255,255,255,.86);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);position:sticky;top:0;z-index:20;min-height:64px}
+.brand{letter-spacing:.01em}
+.brand-mark{border-radius:6px}
+.site-nav a{font-weight:500}
+.site-nav .feedback-link{border:0;padding:0;color:var(--muted)}
+.site-nav .feedback-link:hover{color:var(--accent)}
+.language-control{font-size:0;gap:0}
+.language-control select{font-size:14px;min-height:34px;padding:5px 26px 5px 10px;border-radius:6px;border-color:var(--border);color:var(--ink)}
+
+/* Type scale. */
+h1{font-size:clamp(34px,4.6vw,58px);line-height:1.05;letter-spacing:-.035em;font-weight:600;margin:0 0 18px;text-wrap:balance}
+h2{font-size:20px;line-height:1.3;letter-spacing:-.01em;font-weight:600}
+p{text-wrap:pretty}
+.commerce h1{font-size:clamp(32px,4vw,50px)}
+
+/* Hero. */
+main{padding-top:56px}
+.intro{margin-bottom:40px;max-width:900px}
+.eyebrow{margin:0 0 16px;font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--accent);display:flex;flex-wrap:wrap;gap:6px 14px}
+.eyebrow span{display:inline-flex;align-items:center;gap:14px}
+.eyebrow span+span::before{content:"";width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.45}
+.intro .lede{font-size:clamp(17px,1.6vw,19px);line-height:1.55;color:var(--muted);max-width:66ch}
+.intro .intro-context{font-size:14px;max-width:72ch;margin-top:10px}
+.facts{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:0;font-size:13px;color:var(--muted);border-top:1px solid var(--border)}
+.facts li{display:flex;align-items:center;gap:8px;padding:12px 18px 0 0;margin-right:18px}
+.facts li+li{border-left:1px solid var(--border);padding-left:18px}
+.facts a{color:var(--ink);text-decoration:none;font-weight:500}
+.facts a:hover{color:var(--accent);text-decoration:underline}
+.facts code{font-size:12px;color:var(--muted)}
+.facts svg{width:14px;height:14px;flex:none;color:var(--accent)}
+
+/* Panels: tighter radius system and tinted depth. */
+.checker{border-radius:10px;border-color:var(--border);box-shadow:0 1px 0 rgba(13,29,25,.04),0 18px 40px -32px rgba(13,29,25,.35)}
+input,textarea,select{border-radius:6px}
+button{border-radius:6px}
+.scan-stage{border-radius:12px}
+
+@media(max-width:600px){
+ main{padding-top:32px}
+ .intro{margin-bottom:28px}
+ .facts{display:grid;grid-template-columns:1fr;border-top:0}
+ .facts li,.facts li+li{border-left:0;margin:0;padding:10px 0;border-top:1px solid var(--border)}
+ header{position:static;flex-wrap:wrap;row-gap:10px}
+ header .brand{order:1}
+ header .language-control{order:2;width:auto;margin-left:auto}
+ header .language-control select{min-height:32px;max-width:150px}
+ header .site-nav{order:3;width:100%;gap:6px 16px;font-size:15px}
+}
