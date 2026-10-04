@@ -64,3 +64,5 @@ button{border-radius:6px}
  header .language-control select{min-height:32px;max-width:150px}
  header .site-nav{order:3;width:100%;gap:6px 16px;font-size:15px}
 }
+footer .privacy-note{color:var(--muted);font-size:13px;margin-right:auto;padding-left:12px}
+@media(max-width:600px){footer .privacy-note{padding-left:0;display:block;width:100%}}

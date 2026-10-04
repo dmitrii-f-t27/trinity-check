@@ -1,5 +1,6 @@
 // First-party UI translations.
 export const messages = {
+  "Анонимная статистика посещений: без cookie и без адресов файлов": {"en": "Anonymous visit statistics: no cookies, no file addresses", "es": "Estadísticas anónimas de visitas: sin cookies ni direcciones de archivos", "pt-BR": "Estatísticas anônimas de visitas: sem cookies e sem endereços de arquivos", "zh-CN": "匿名访问统计：不使用 Cookie，不记录文件地址", "ja": "匿名の訪問統計：Cookie もファイルのアドレスも記録しません"},
   "Бесплатно": {"en": "Free", "es": "Gratis", "pt-BR": "Grátis", "zh-CN": "免费", "ja": "無料"},
   "В браузере": {"en": "Runs in your browser", "es": "En tu navegador", "pt-BR": "No seu navegador", "zh-CN": "在浏览器中运行", "ja": "ブラウザで実行"},
   "Открытый код": {"en": "Open source", "es": "Código abierto", "pt-BR": "Código aberto", "zh-CN": "开源", "ja": "オープンソース"},
