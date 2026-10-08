@@ -54,7 +54,16 @@ All greys come from one green-grey family. Shadows are tinted with the stage col
 ## Social preview
 `og.png` (1200×630) and Open Graph/Twitter tags on every page. The card shows the product name, the one-line promise and the four runtime names — never a verdict about a real third-party model.
 
+## Direction v2 — "wow" (2026-10-08, owner's request)
+Supersedes the light-theme direction above where they conflict. The instrument is still the hero, but the page is now a dark
+ternary instrument: all of it lives in `wow.css` + `wow.mjs` (loaded last on all six pages); the earlier files stay as the base.
+- **Theme:** dark by default. Tokens: `--bg #050d0a`, `--surface #0b1813`, `--ink #eaf5f0`, `--muted #8fa49c`, `--accent #5fd4a8` (mint), `--accent-ink #04120c` (text on mint buttons), `--refuse #ff8f7f`. One accent, red only for a refusal.
+- **Type:** Geist, h1 up to 80 px with a white→mint gradient, section h2 up to 52 px, mono kickers in uppercase with +0.16em tracking, the four runtime names as outlined display words.
+- **Motion:** curtain preloader once per session (home only, skipped for reduced motion), a canvas lattice of balanced trits (−, 0, +) behind the hero that lights near the pointer (30 fps, paused off screen), scroll progress bar, spotlight cards that follow the pointer, a rotating conic border on the scan stage. Everything respects `prefers-reduced-motion`.
+- **Still true:** facts only, no fake numbers or logos, six languages equal, no third-party requests (fonts self-hosted), nothing leaves the browser except the file range request.
+- Do not put decoration over form fields or results: the tool must stay readable first.
+
 ## Don'ts
-- No purple/blue AI gradients, glassmorphism, emoji icons, stock photos, placeholder images.
+- No purple/blue AI gradients, emoji icons, stock photos, placeholder images. (Subtle glass panels are allowed since v2.)
 - No "trusted by" logos, fake numbers, or performance/safety/quality claims about models.
-- No new accent colours. No dark sections inside the light page other than the instrument panel.
+- No new accent colours.
