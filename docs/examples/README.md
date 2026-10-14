@@ -1,6 +1,13 @@
 # Examples
 
-## minimal-header-report.json
+Two samples, both real tool output with no hand edits:
+
+| File | Source | Profiles |
+| --- | --- | --- |
+| `minimal-header-report.json` | synthetic test fixture, written locally | all four, all `accepted` |
+| `bonsai-prismml-header-report.json` | manual live run on a public Hugging Face file | PrismML, `accepted` |
+
+## minimal-header-report.json (synthetic fixture)
 
 The actual JSON report written by the `trinity-check-ci` CLI for one tiny synthetic GGUF file
 produced by `trinity-check-ci/testkit/fixtures.mjs` (version 3, one key `general.architecture`
@@ -25,3 +32,16 @@ To regenerate it:
 node trinity-check-ci/testkit/write-fixture.mjs <dir>
 node trinity-check-ci/src/cli.mjs --runtime all --root <dir> --report minimal-header-report.json minimal-ok.gguf
 ```
+
+## bonsai-prismml-header-report.json (manual live run)
+
+The unedited report from a manual run of the CLI with `--runtime PrismML` on the public Hugging
+Face file `prism-ml/Ternary-Bonsai-2-27B-gguf`, `Ternary-Bonsai-2-27B-PTQ1_0.gguf`, pinned to the
+immutable commit `b072e1d3b35a0a630cece372c2127528e0994386`. Result: exit 0, `accepted`; 16777216
+bytes (16 MiB) were read of a 5946648928-byte file.
+
+It is a manual smoke, not part of the automated suite, whose network tests use a mocked `fetch`.
+Scope is GGUF header and metadata only. It does not check the weights, does not hash the file, and
+says nothing about quality, performance, safety or that inference will work, and only the PrismML
+profile was selected. Re-running it needs network access and may change if the file changes; the
+pinned commit keeps the URL immutable.

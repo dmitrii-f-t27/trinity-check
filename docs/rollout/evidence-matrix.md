@@ -8,7 +8,7 @@ Status values: SUPPORTED (a file or test you can point to, run today), PARTIAL, 
 
 | # | Claim we may want to make | Evidence that exists now | Status | Missing before it can be used externally |
 | --- | --- | --- | --- | --- |
-| 1 | The browser check and the CI gate use one parser | `formats.wasm` SHA-256 in `provenance.txt`; `trinity-check-ci/test/parity.test.mjs` compares the pinned hash with the file, `provenance.txt` and `app.mjs` | PARTIAL until Codex has run the tests and CI is green on the release SHA | Green CI on the exact release SHA |
+| 1 | The browser check and the CI gate use one parser | `formats.wasm` SHA-256 in `provenance.txt`; `trinity-check-ci/test/parity.test.mjs` compares the pinned hash with the file, `provenance.txt` and `app.mjs` | SUPPORTED for commit 692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e: local 59/59 and GitHub CI run https://github.com/dmitrii-f-t27/trinity-check/actions/runs/38654418753 (5 jobs passed) | Re-run on any later commit |
 | 2 | The parser output is reproducible from source | `provenance.txt` records upstream commit and compiler commit; a rebuild on 2026-10-01 was byte-identical | PARTIAL | A fresh independent rebuild on a clean machine, recorded with tool versions |
 | 3 | The CI gate fails closed | Offline tests for rejected, truncated, split, caveat, unknown, empty, bad runtime, wrong parser hash, oversized header, HTTP 200 instead of 206, network failure, stale report | PARTIAL until the tests are run | Test run output on the release SHA |
 | 4 | Scope is header and metadata only | Spec section 2, report `scope` and `limitations` fields | SUPPORTED by documents | Nothing; do not widen the claim |

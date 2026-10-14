@@ -1,51 +1,34 @@
 Closes #1
 
-## Problem
+## What this adds
 
-Trinity Check inspects GGUF headers only in the browser. A team cannot gate a model release on it
-in CI, and nothing fails a pipeline when a file is rejected, undecided, a split part or empty.
+`trinity-check-ci/`: a local CLI and a reusable GitHub Action (`node24`) that run the existing
+`formats.wasm` (SHA-256 verified before use) on local `.gguf` files and public Hugging Face URLs,
+and fail unless every file is fully checked and every selected runtime profile accepts it.
 
-## Result
+- Exit 0 all accepted; 1 findings (rejected, caveat, unknown, split part, empty); 2 usage, IO,
+  network, parser-hash or internal failure. No bypass options.
+- Deterministic JSON report (schemaVersion 1), written on every run with a valid report path.
+- The report path must end in `.json`, stay inside the root and never alias an input; checks run
+  before anything is deleted.
+- No new parser or verdict logic and no `.t27` change; the existing result mapping is shared via
+  `verdict-core.mjs` with unchanged browser behavior.
 
-`trinity-check-ci/`: a local CLI and a reusable GitHub Action (`runs.using: node24`) that run the
-existing `formats.wasm` (SHA-256 verified before use) on local `.gguf` files and public
-Hugging Face URLs.
+Scope: GGUF header and metadata only. Not weights, safety, quality, performance or inference success.
 
-- Exit 0 only if at least one input was given, every input was fully checked and every selected
-  runtime profile decided `accepted`. Exit 1 for findings, exit 2 for usage, IO, network,
-  parser-hash or internal failures.
-- A deterministic JSON report (schemaVersion 1) is written on every run with a valid report path.
-  `result.filesRequested` is the number of inputs asked for, `result.filesEvaluated` how many were checked.
-- The report path must end in `.json`, stay inside the root, not be a symlink, not replace a file
-  that is not an earlier report, and not alias an input (path, symlink or hard link). These checks
-  run before anything is deleted.
-- No new parser or verdict logic. The existing numeric-result mapping is shared through
-  `verdict-core.mjs`; browser labels and behavior are unchanged.
+Docs: `docs/specs/trinity-check-ci.md`, `trinity-check-ci/README.md`, `docs/examples/`,
+`docs/release-notes-ci-v0.1.0.md`, `docs/rollout/` (plans only).
 
-Docs: `docs/specs/trinity-check-ci.md`, `trinity-check-ci/README.md`,
-`docs/examples/` (sample report for a synthetic fixture), `docs/BAZA-HANDOFF-RU.md`,
-`docs/rollout/` (plans only), `docs/release-notes-ci-v0.1.0.md` (draft).
+## Verified
 
-## Scope
+- Local, Node v24.13.0: `node --test` 59/59, smoke exits 0/1/2, `git diff --check` clean.
+- GitHub CI, all 5 jobs passed (Node 20/22/24 tests and CLI smoke, local Action smoke, external
+  consumer smoke at `692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e`):
+  https://github.com/dmitrii-f-t27/trinity-check/actions/runs/38654418753
 
-GGUF header and metadata only. Not checked and never claimed: weight integrity or a whole-file hash,
-precision loss in weights, safety, licensing, quality, performance, or inference success.
-Runtime profiles are pinned revisions, not latest. One split part is never accepted.
-No `.t27` change: this work adds no parsing or verdict rule (spec section 3).
-
-## CI
-
-`.github/workflows/trinity-check-ci.yml`, read-only permissions, actions pinned by SHA:
-- Node 20/22/24: `node --test` and the CLI smoke.
-- Local Action smoke: accepted fixture and a controlled rejected fixture (expected exit 1).
-- Consumer smoke: the Action downloaded from this repository at the immutable commit
-  `692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e`, on the same two fixtures.
-
-## Verification
-
-Done locally by Codex on Node v24.13.0: `node --test` 59/59 pass, `testkit/smoke.mjs` exits
-0/1/2 as expected, `git diff --check` clean.
-
-Pending: Node 20 and 22, and every GitHub CI job on this PR's last SHA.
-Not done: a live Hugging Face request (network tests use a mocked `fetch`), a release tag.
-The pinned commit above is a tested code commit, not a release; the tag follows a green CI.
+Manual live smoke (not part of the offline suite, whose network tests use a mocked `fetch`): the CLI
+with `--runtime PrismML` on the public Hugging Face file
+`prism-ml/Ternary-Bonsai-2-27B-gguf` at immutable commit `b072e1d3b35a0a630cece372c2127528e0994386`
+(`Ternary-Bonsai-2-27B-PTQ1_0.gguf`): exit 0, accepted, 16777216 bytes (16 MiB) read of a
+5946648928-byte file. The real report is `docs/examples/bonsai-prismml-header-report.json`.
+Scope is header and metadata only: this says nothing about weights, quality, performance or inference.

@@ -1,8 +1,7 @@
-# trinity-check-ci v0.1.0 (draft release notes)
+# trinity-check-ci v0.1.0
 
-Status: draft. The release tag is pending until GitHub CI is green. Until then the immutable
-reference is the tested code commit `692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e`. There is no
-Marketplace listing.
+First release of the CLI and GitHub Action. Tested code commit:
+`692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e`. Pin the Action to that full commit SHA.
 
 ## What it is
 
@@ -38,7 +37,7 @@ permissions:
   contents: read
 steps:
   - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
-  - uses: dmitrii-f-t27/trinity-check/trinity-check-ci@692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e # tested code commit
+  - uses: dmitrii-f-t27/trinity-check/trinity-check-ci@692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e # v0.1.0 code commit
     with:
       files: |
         models/model.gguf
@@ -48,15 +47,21 @@ steps:
 A sample report for a synthetic test fixture is in `docs/examples/minimal-header-report.json`
 (see `docs/examples/README.md`).
 
-## Verification status
+## Verified
 
-Passed locally on Node v24.13.0, run by Codex after the final changes: `node --test` 59/59,
-`testkit/smoke.mjs` exits 0, 1 and 2 as expected, `git diff --check` clean.
-Pending: Node 20 and 22, and all GitHub CI jobs (tests, local Action smoke, consumer smoke).
-Update this section with the CI run link before publishing.
+- Local, Node v24.13.0: `node --test` 59/59, `testkit/smoke.mjs` exits 0, 1 and 2 as expected,
+  `git diff --check` clean.
+- GitHub CI, all 5 jobs passed: Node 20, 22 and 24 tests with CLI smoke, local Action smoke, and an
+  external consumer smoke that runs this Action from the repository at the commit above:
+  https://github.com/dmitrii-f-t27/trinity-check/actions/runs/38654418753
+
+- Manual live smoke (not in the suite): CLI with `--runtime PrismML` on the public file
+  `prism-ml/Ternary-Bonsai-2-27B-gguf` at commit `b072e1d3b35a0a630cece372c2127528e0994386`
+  (`Ternary-Bonsai-2-27B-PTQ1_0.gguf`): exit 0, accepted, 16 MiB read of 5946648928 bytes. Report:
+  `docs/examples/bonsai-prismml-header-report.json`. Header and metadata only.
 
 ## Known limitations
 
 - Split-model completeness across files is not evaluated.
 - Hard links are detected only for the report-versus-input guard.
-- No live Hugging Face test is part of the suite; network tests use a mocked `fetch`.
+- No live Hugging Face test is part of the automated suite; its network tests use a mocked `fetch`.

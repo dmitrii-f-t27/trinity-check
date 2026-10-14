@@ -46,14 +46,15 @@ The report is written on every run with a valid report path, including failures,
 earlier report at that path is deleted before the check starts (only after the path checks
 above pass). `result.filesRequested` is the number of inputs asked for and
 `result.filesEvaluated` the number actually checked.
-The Action runs on `node24`, which GitHub's metadata-syntax documentation lists (verified by Codex).
+The Action runs on `node24`, which GitHub's metadata-syntax documentation lists.
 
 ## GitHub Action
 
 Pin the Action to a full commit SHA. The immutable reference below is the tested code
-commit `692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e` (local tests and smoke passed; GitHub CI on Node
-20/22 and the consumer smoke are pending). It is a commit, not a release: the release tag is pending
-until CI is green, and no Marketplace listing exists.
+commit `692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e`. GitHub CI passed all 5 jobs (Node 20, 22 and 24
+tests with CLI smoke, local Action smoke, and a consumer smoke that runs the Action from this
+repository at that commit):
+https://github.com/dmitrii-f-t27/trinity-check/actions/runs/38654418753
 
 ```yaml
 permissions:

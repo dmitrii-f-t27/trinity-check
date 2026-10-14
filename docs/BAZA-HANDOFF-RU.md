@@ -1,7 +1,7 @@
 # BAZA handoff: trinity-check-ci on the Ternara technical page
 
-(The file name keeps the owner's "RU" label; first-party docs in this repository are English only.
-A short Russian instruction for the chat is delivered in the task report, not stored here.)
+(Integration notes for whoever builds the Ternara technical page. First-party docs in this
+repository are English only.)
 
 ## Goal
 
@@ -21,14 +21,13 @@ PT-BR, with a call to action to the Trinity Check site and the Model Release Aud
   files, not a copy. A full technical block plus CTA is enough for now.
 - Do not claim: weight integrity, bf16 loss detection, safety, quality, performance, or that
   inference will work. Scope is GGUF header and metadata only.
-- Do not invent a published tag, a Marketplace listing or a release SHA. Use the real release
-  SHA only after Codex publishes it and reports it.
+- Do not invent a tag name, a Marketplace listing or a different SHA. Use only the pinned
+  commit below, and a tag only once it exists in the repository.
 
 ## Find the active Ternara source first
 
-The path `/Users/ssdm4/Desktop/PROJECTS/CLAUDE/ternara-preview` mentioned in Brain does not exist
-on this machine. Locate the active Ternara site sources yourself (the live repository or the
-folder that deploys it), confirm which one is live, and work there. Do this before editing.
+Locate the active Ternara site sources yourself (the live repository or the folder that deploys
+it), confirm which one is live, and work there. Do this before editing.
 
 ## Content for the block (source text, English)
 
@@ -56,8 +55,10 @@ CTA links:
 - Interface spec: `docs/specs/trinity-check-ci.md` in that repository
 
 Setup example for the page. The reference is the published immutable tested code commit
-`692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e`. It is a commit, not a release: the release tag is
-pending until GitHub CI is green, so do not write "release" or a tag name on the page yet.
+`692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e`, verified by GitHub CI (all 5 jobs passed: Node 20, 22
+and 24, local Action smoke, and an external consumer run of the Action at this commit):
+https://github.com/dmitrii-f-t27/trinity-check/actions/runs/38654418753
+Describe it as a tested commit; do not name a release or tag on the page until one exists in the repository.
 
 ```yaml
 permissions:
@@ -97,6 +98,6 @@ Use the site's existing i18n mechanism for Ternara, not a new one.
 3. No parser or verdict logic duplicated on the Ternara site.
 4. Design, leads, Zoho, DNS and data untouched; prices and payments untouched.
 5. The setup example contains the pinned commit above, described as a tested code commit
-   (release tag pending), not as a release.
+   not as a release, unless a tag exists by then.
 6. Report back the files changed and how it was checked (screenshots of each language at
    mobile and desktop widths).
