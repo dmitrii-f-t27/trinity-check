@@ -2,7 +2,7 @@
 
 Status: plan only. Darwin is an accelerator conversation referenced in the owner's
 materials. Dates, attendees, wording about the team and any terms are private and
-are kept in `~/Brain/private/`, not here. This document sends nothing and commits to nothing.
+are kept privately, not here. This document sends nothing and commits to nothing.
 
 ## What may be shown
 
@@ -48,5 +48,5 @@ SHA. Nothing that is not in the repository.
 
 ## After the conversation
 
-Record, in `~/Brain/private/`, what was asked and what was promised. Promise nothing that is not
+Record privately, outside this repository, what was asked and what was promised. Promise nothing that is not
 in the evidence matrix with status SUPPORTED.

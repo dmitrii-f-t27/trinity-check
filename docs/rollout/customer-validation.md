@@ -1,7 +1,7 @@
 # Customer-validation plan (plan)
 
 Status: plan only. No customers exist in this document. No outreach is sent from it.
-Names, emails and conversation notes belong in `~/Brain/private/`.
+Names, emails and conversation notes are kept privately, outside this repository.
 
 ## Hypothesis to test
 

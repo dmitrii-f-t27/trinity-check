@@ -12,7 +12,7 @@ check in this repository is unrelated to FPGA performance and must not be used t
 3. Baseline: a named implementation (for example a software or GPU baseline) with its own
    commit or version and settings.
 4. Target hardware: the board or device identified exactly (model, revision, clock, memory), and
-   the owner's confirmation of access. Access details are private (`~/Brain/private/`).
+   the owner's confirmation of access. Access details are kept private, not in this repository.
 5. Workload: the exact input data and sizes, created reproducibly; not a customer's data.
 6. Correctness first: the design's output compared with a reference on the same inputs, with
    zero unexplained mismatches, before any timing is taken.
