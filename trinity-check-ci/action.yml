@@ -1,0 +1,47 @@
+name: Trinity Check CI
+description: >-
+  Fail-closed CI gate for GGUF header and metadata. Runs the Trinity Check
+  t27-generated WASM parser (SHA-256 verified before use) on local files or public
+  Hugging Face URLs and succeeds only if every file is fully checked and every
+  selected runtime profile accepts it. Scope: header and metadata only.
+author: dmitrii-f-t27
+branding:
+  icon: check-square
+  color: gray-dark
+inputs:
+  files:
+    description: >-
+      Newline-separated list. Each line is a local path ending in .gguf (inside the
+      workspace) or a public https://huggingface.co/.../resolve/<revision>/<file>.gguf URL.
+    required: true
+  runtimes:
+    description: >-
+      Runtime profiles that must all accept each file: llama.cpp, PrismML, bitnet.cpp,
+      mortar.cpp (comma or newline separated) or "all". The default "all" requires all four
+      profiles to accept; name the runtimes you ship.
+    required: false
+    default: all
+  report-path:
+    description: >-
+      JSON report path (must end in .json) inside the workspace; it must not be or link to an
+      input file. It is written on success and on failure.
+    required: false
+    default: trinity-check-report.json
+  summary:
+    description: 'Append a Markdown summary to the job summary ("true" or "false").'
+    required: false
+    default: 'true'
+outputs:
+  passed:
+    description: '"true" only when every file was fully checked and accepted by every selected profile.'
+  exit-code:
+    description: '0 accepted, 1 findings, 2 usage, IO, network, parser or internal failure.'
+  report-path:
+    description: Workspace-relative path of the JSON report; empty when no report could be written.
+  files-requested:
+    description: Number of inputs requested.
+  files-accepted:
+    description: Number of inputs accepted by every selected profile.
+runs:
+  using: node24
+  main: src/action.mjs

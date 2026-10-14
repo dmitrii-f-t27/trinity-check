@@ -1,1 +1,1 @@
-{"name":"trinity-check","private":true,"version":"1.0.0","scripts":{"start":"node server.js"},"engines":{"node":">=20"}}
+{"name":"trinity-check","private":true,"version":"1.0.0","scripts":{"start":"node server.js","test":"node --test","smoke":"node trinity-check-ci/testkit/smoke.mjs"},"engines":{"node":">=20"}}
