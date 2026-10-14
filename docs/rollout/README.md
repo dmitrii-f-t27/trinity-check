@@ -5,7 +5,7 @@ customer, or an executed action. No outreach is sent, no hardware is used, nothi
 deployed and no grant is filed from these documents. Items marked UNKNOWN must be filled by
 the owner or established by a real check before anyone relies on them.
 
-Legal and financial documents are not stored here; they belong in `~/Brain/private/`.
+Legal and financial documents are not stored here; they are kept privately, outside this repository.
 
 | File | Contents |
 | --- | --- |

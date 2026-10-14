@@ -229,7 +229,7 @@ the header; -88 tied output Hadamard metadata; -89 tensor extra precision metada
 ## 11. Platform notes
 
 - CLI baseline: Node >= 20 (global `fetch`, `node:test`). CI matrix: 20, 22, 24.
-- Action runtime: `runs.using: node24`. Verified by Codex against the official GitHub
+- Action runtime: `runs.using: node24`. Checked against the official GitHub
   Actions metadata syntax documentation
   (https://docs.github.com/en/actions/reference/workflows-and-actions/metadata-syntax),
   which lists `node24`; no fallback is needed.
