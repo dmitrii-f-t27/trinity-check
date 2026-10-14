@@ -1,7 +1,8 @@
 # trinity-check-ci v0.1.0 (draft release notes)
 
-Status: draft. Not published; no tag or release exists yet. Fill the release SHA only after
-publication.
+Status: draft. The release tag is pending until GitHub CI is green. Until then the immutable
+reference is the tested code commit `692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e`. There is no
+Marketplace listing.
 
 ## What it is
 
@@ -36,22 +37,26 @@ is never accepted. A local check has no immutable revision.
 permissions:
   contents: read
 steps:
-  - uses: actions/checkout@<PIN_FULL_SHA>
-  - uses: dmitrii-f-t27/trinity-check/trinity-check-ci@<RELEASE_SHA>   # replace with the published 40-character SHA
+  - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+  - uses: dmitrii-f-t27/trinity-check/trinity-check-ci@692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e # tested code commit
     with:
       files: |
         models/model.gguf
       runtimes: llama.cpp
 ```
 
-## Verification status at the time of writing
+A sample report for a synthetic test fixture is in `docs/examples/minimal-header-report.json`
+(see `docs/examples/README.md`).
 
-Offline test suite: 48/48 pass and smoke exits 0/1/2 on Node v24.13.0, run by Codex before the
-report-path safety fix. Regression tests for that fix, Node 20 and 22, and CI on GitHub are pending.
-Update this section with real results and links before publishing.
+## Verification status
+
+Passed locally on Node v24.13.0, run by Codex after the final changes: `node --test` 59/59,
+`testkit/smoke.mjs` exits 0, 1 and 2 as expected, `git diff --check` clean.
+Pending: Node 20 and 22, and all GitHub CI jobs (tests, local Action smoke, consumer smoke).
+Update this section with the CI run link before publishing.
 
 ## Known limitations
 
 - Split-model completeness across files is not evaluated.
 - Hard links are detected only for the report-versus-input guard.
-- No live Hugging Face test is part of the suite.
+- No live Hugging Face test is part of the suite; network tests use a mocked `fetch`.

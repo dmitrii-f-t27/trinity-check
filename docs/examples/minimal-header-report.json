@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "tool": {
+    "name": "trinity-check-ci",
+    "version": "0.1.0"
+  },
+  "parser": {
+    "file": "formats.wasm",
+    "sha256": "76760c0124ed3bef9c322b3dd6ceffb331607c0f990ce4075f83658a5770d7d0",
+    "expectedSha256": "76760c0124ed3bef9c322b3dd6ceffb331607c0f990ce4075f83658a5770d7d0",
+    "verified": true,
+    "upstream": {
+      "repository": "https://github.com/dmitrii-f-t27/trinity-memory",
+      "commit": "096efbd01142ebafbeb2c7cd364e9f6e57bf41f6"
+    },
+    "compiler": {
+      "repository": "https://github.com/gHashTag/t27",
+      "commit": "bff21b85b206a0dd367876343e56dcd8312d81ba"
+    },
+    "headerLimitBytes": 268435456
+  },
+  "scope": "GGUF header and metadata only; not a guarantee of successful inference",
+  "limitations": [
+    "Only the beginning of each GGUF file is read, up to the parser limit; the whole file is never read or hashed.",
+    "Weight integrity, precision loss in weights, safety, licensing, quality and performance are not checked.",
+    "The four runtime profiles are pinned revisions inside the parser, not the latest or every revision of any runtime.",
+    "One part of a split model is not a complete model and is never reported as accepted.",
+    "A local check has no immutable revision; only the HF mode pins a commit."
+  ],
+  "profiles": [
+    {
+      "id": 1,
+      "name": "llama.cpp"
+    },
+    {
+      "id": 2,
+      "name": "PrismML"
+    },
+    {
+      "id": 3,
+      "name": "bitnet.cpp"
+    },
+    {
+      "id": 4,
+      "name": "mortar.cpp"
+    }
+  ],
+  "profileSelection": "default-all",
+  "policy": {
+    "id": "all-selected-profiles-accepted",
+    "description": "Exit 0 only if at least one input was given, every input was fully checked, and every selected profile decided accepted (model.result 0). Part-only, caveat, unknown, rejected, empty and error are never green."
+  },
+  "result": {
+    "passed": true,
+    "exitCode": 0,
+    "reason": "All 1 file(s) accepted by every selected profile",
+    "filesRequested": 1,
+    "filesEvaluated": 1,
+    "filesAccepted": 1,
+    "filesNotAccepted": 0,
+    "filesErrored": 0
+  },
+  "files": [
+    {
+      "index": 1,
+      "input": ".smoke/minimal-ok.gguf",
+      "kind": "local",
+      "status": "checked",
+      "verdict": "accepted",
+      "location": {
+        "path": ".smoke/minimal-ok.gguf",
+        "symlinkFollowed": false
+      },
+      "fileSize": "69",
+      "bytesRead": 69,
+      "prefixSha256": "cf76e0dbe671a1e63b53fdb51dd86a92600a0dd794aa05fbc2905cedaf3f41a1",
+      "complete": true,
+      "split": false,
+      "profiles": [
+        {
+          "id": 1,
+          "name": "llama.cpp",
+          "decision": "accepted",
+          "accepted": true,
+          "walk": {
+            "status": 0,
+            "reader": 0,
+            "needed": "69",
+            "version": "3",
+            "keys": "1",
+            "tensors": "0",
+            "data_start": "69",
+            "alignment": "32",
+            "ternary": "0",
+            "ternary_ok": "0",
+            "misfit_ternary": "0",
+            "misfit_other": "0",
+            "read": "0",
+            "record": "18446744073709551615",
+            "expected": "0",
+            "found": "0"
+          },
+          "model": {
+            "verdict": 0,
+            "status": 0,
+            "part": "0",
+            "record": "18446744073709551615",
+            "expected": "0",
+            "found": "0",
+            "result": 0
+          }
+        },
+        {
+          "id": 2,
+          "name": "PrismML",
+          "decision": "accepted",
+          "accepted": true,
+          "walk": {
+            "status": 0,
+            "reader": 0,
+            "needed": "69",
+            "version": "3",
+            "keys": "1",
+            "tensors": "0",
+            "data_start": "69",
+            "alignment": "32",
+            "ternary": "0",
+            "ternary_ok": "0",
+            "misfit_ternary": "0",
+            "misfit_other": "0",
+            "read": "0",
+            "record": "18446744073709551615",
+            "expected": "0",
+            "found": "0"
+          },
+          "model": {
+            "verdict": 0,
+            "status": 0,
+            "part": "0",
+            "record": "18446744073709551615",
+            "expected": "0",
+            "found": "0",
+            "result": 0
+          }
+        },
+        {
+          "id": 3,
+          "name": "bitnet.cpp",
+          "decision": "accepted",
+          "accepted": true,
+          "walk": {
+            "status": 0,
+            "reader": 0,
+            "needed": "69",
+            "version": "3",
+            "keys": "1",
+            "tensors": "0",
+            "data_start": "69",
+            "alignment": "32",
+            "ternary": "0",
+            "ternary_ok": "0",
+            "misfit_ternary": "0",
+            "misfit_other": "0",
+            "read": "0",
+            "record": "18446744073709551615",
+            "expected": "0",
+            "found": "0"
+          },
+          "model": {
+            "verdict": 0,
+            "status": 0,
+            "part": "0",
+            "record": "18446744073709551615",
+            "expected": "0",
+            "found": "0",
+            "result": 0
+          }
+        },
+        {
+          "id": 4,
+          "name": "mortar.cpp",
+          "decision": "accepted",
+          "accepted": true,
+          "walk": {
+            "status": 0,
+            "reader": 0,
+            "needed": "69",
+            "version": "3",
+            "keys": "1",
+            "tensors": "0",
+            "data_start": "69",
+            "alignment": "32",
+            "ternary": "0",
+            "ternary_ok": "0",
+            "misfit_ternary": "0",
+            "misfit_other": "0",
+            "read": "0",
+            "record": "18446744073709551615",
+            "expected": "0",
+            "found": "0"
+          },
+          "model": {
+            "verdict": 0,
+            "status": 0,
+            "part": "0",
+            "record": "18446744073709551615",
+            "expected": "0",
+            "found": "0",
+            "result": 0
+          }
+        }
+      ],
+      "error": null
+    }
+  ],
+  "error": null
+}

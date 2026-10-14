@@ -50,9 +50,10 @@ The Action runs on `node24`, which GitHub's metadata-syntax documentation lists 
 
 ## GitHub Action
 
-Placeholder until a release exists: replace `<RELEASE_SHA>` with the full 40-character
-commit SHA of a published release of this repository. Do not use a branch or a tag you have
-not verified, and no release or Marketplace listing is claimed here.
+Pin the Action to a full commit SHA. The immutable reference below is the tested code
+commit `692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e` (local tests and smoke passed; GitHub CI on Node
+20/22 and the consumer smoke are pending). It is a commit, not a release: the release tag is pending
+until CI is green, and no Marketplace listing exists.
 
 ```yaml
 permissions:
@@ -62,8 +63,8 @@ jobs:
   gguf-header:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@<PIN_FULL_SHA>
-      - uses: dmitrii-f-t27/trinity-check/trinity-check-ci@<RELEASE_SHA>   # PIN BEFORE USE
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: dmitrii-f-t27/trinity-check/trinity-check-ci@692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e # tested code commit
         with:
           files: |
             models/model.gguf
