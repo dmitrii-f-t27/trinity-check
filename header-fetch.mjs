@@ -1,3 +1,4 @@
+import {isSplitName} from './verdict-core.mjs';
 // Anonymous, bounded HTTP ranges. Never buffer a server's full-file 200 reply.
 export function parseURL(input) {
   const url = new URL(input);
@@ -75,7 +76,7 @@ export async function readHeader(input, inspector, progress = () => {}, fetcher 
     const result = inspector.inspect(bytes, fileSize);
     progress({bytes: bytes.length, limit: inspector.limit});
     if (result.complete) return {...result, url: url.href, revision: parts[3],
-      split: /-\d{5}-of-\d{5}\.gguf$/i.test(parts.at(-1))};
+      split: isSplitName(parts.at(-1))};
     if (result.needed <= BigInt(bytes.length)) throw new Error('Parser requested no additional bytes');
     if (result.needed > BigInt(inspector.limit) || bytes.length >= inspector.limit)
       throw new Error(`Header exceeds the ${inspector.limit / 1048576} MiB inspection limit`);

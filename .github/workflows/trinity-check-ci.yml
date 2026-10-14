@@ -1,0 +1,110 @@
+name: trinity-check-ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Read-only. Nothing here needs a token beyond checkout, and nothing is published.
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Node ${{ matrix.node }} tests and CLI smoke
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Offline tests (real WASM, mocked network)
+        run: node --test
+      - name: CLI smoke (green input exits 0, controlled rejected input exits 1, missing file exits 2)
+        run: node trinity-check-ci/testkit/smoke.mjs
+
+  action-smoke:
+    name: Action smoke (local action, offline)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Write fixtures
+        run: node trinity-check-ci/testkit/write-fixture.mjs .smoke
+      - name: Green input
+        id: green
+        uses: ./trinity-check-ci
+        with:
+          files: .smoke/minimal-ok.gguf
+          runtimes: all
+          report-path: .smoke/green-report.json
+      - name: Controlled rejected input (the step is expected to fail)
+        id: rejected
+        continue-on-error: true
+        uses: ./trinity-check-ci
+        with:
+          files: .smoke/rejected-bad-magic.gguf
+          runtimes: llama.cpp
+          report-path: .smoke/rejected-report.json
+      - name: Check the outcomes
+        env:
+          GREEN_PASSED: ${{ steps.green.outputs.passed }}
+          REJECTED_OUTCOME: ${{ steps.rejected.outcome }}
+          REJECTED_PASSED: ${{ steps.rejected.outputs.passed }}
+          REJECTED_CODE: ${{ steps.rejected.outputs.exit-code }}
+        run: |
+          test "$GREEN_PASSED" = "true"
+          test "$REJECTED_OUTCOME" = "failure"
+          test "$REJECTED_PASSED" = "false"
+          test "$REJECTED_CODE" = "1"
+          test -s .smoke/green-report.json
+          test -s .smoke/rejected-report.json
+
+  # Uses the Action exactly as a consumer would: downloaded from the published repository at an
+  # immutable commit, not from the local checkout. This proves that the root formats.wasm and
+  # modules come with the pinned ref. The pinned commit is the tested code commit, not a release tag.
+  consumer-smoke:
+    name: Consumer smoke (published Action at pinned commit)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Write fixtures with the existing writer
+        run: node trinity-check-ci/testkit/write-fixture.mjs .consumer
+      - name: Green input (published Action)
+        id: green
+        uses: dmitrii-f-t27/trinity-check/trinity-check-ci@692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e # tested code commit
+        with:
+          files: .consumer/minimal-ok.gguf
+          runtimes: all
+          report-path: .consumer/green-report.json
+      - name: Controlled rejected input (published Action; the step is expected to fail with exit 1)
+        id: rejected
+        continue-on-error: true
+        uses: dmitrii-f-t27/trinity-check/trinity-check-ci@692d1e171c4ef5916c2b34e6113fb8d32c6ceb2e # tested code commit
+        with:
+          files: .consumer/rejected-bad-magic.gguf
+          runtimes: llama.cpp
+          report-path: .consumer/rejected-report.json
+      - name: Check the outcomes
+        env:
+          GREEN_PASSED: ${{ steps.green.outputs.passed }}
+          REJECTED_OUTCOME: ${{ steps.rejected.outcome }}
+          REJECTED_PASSED: ${{ steps.rejected.outputs.passed }}
+          REJECTED_CODE: ${{ steps.rejected.outputs.exit-code }}
+        run: |
+          test "$GREEN_PASSED" = "true"
+          test "$REJECTED_OUTCOME" = "failure"
+          test "$REJECTED_PASSED" = "false"
+          test "$REJECTED_CODE" = "1"
+          test -s .consumer/green-report.json
+          test -s .consumer/rejected-report.json

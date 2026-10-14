@@ -1,1 +1,4 @@
 .data/
+.smoke/
+.smoke-*/
+trinity-check-report.json
